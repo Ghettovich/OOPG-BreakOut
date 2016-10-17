@@ -175,7 +175,7 @@ public class WaterWorld extends GameEngine {
      * Vernieuwt het dashboard
      */
     private void refreshDasboardText() {
-        dashboardText.setText("Bubbles popped: "+bubblesPopped);
+        dashboardText.setText("Belletjes gepopt: "+bubblesPopped);
     }
 
     /**
