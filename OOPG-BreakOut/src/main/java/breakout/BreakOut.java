@@ -36,9 +36,8 @@ public class BreakOut extends GameEngine {
         int worldHeight=768;
         
         //initializeSound();
-        createDashboard(worldWidth, 100);
-        
-        //initializeTileMap();
+        createDashboard(worldWidth, 100);        
+        initializeTileMap();
         //initializePersistence();
 
         createObjects();
@@ -74,6 +73,32 @@ public class BreakOut extends GameEngine {
         dashboardText=new TextObject("");
         dashboard.addGameObject(dashboardText);
         addDashboard(dashboard);
+    }
+	
+    private void initializeTileMap() {
+        /* TILES */
+        Sprite boardsSprite = new Sprite("src/main/java/nl/han/ica/waterworld/media/boards.jpg");
+        TileType<BoardsTile> boardTileType = new TileType<>(BoardsTile.class, boardsSprite);
+
+        TileType[] tileTypes = { boardTileType };
+        int tileSize=50;
+        int tilesMap[][]={
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1, 0, 0, 0, 0,-1,0 , 0},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+        };
+        tileMap = new TileMap(tileSize, tileTypes, tilesMap);
     }
 
 	@Override
