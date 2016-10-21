@@ -20,6 +20,8 @@ public class BreakOut extends GameEngine {
 	private TextObject dashboardText;
 	private Bal bal;
 	private Peddel peddel;
+	//moet er later weer uit
+	private VergrotePedelPowerup vergrotePedelPowerup;
 	
 	private int worldWidth = 900;
 	private int worldHeight = 600;
@@ -62,13 +64,18 @@ public class BreakOut extends GameEngine {
     }
 	
     private void createObjects() {
-		// TODO Auto-generated method stub    	
+		// TODO Auto-generated method stub 
+    	peddel = new Peddel(this,"Bram", 20,100);
+    	this.addGameObject(peddel);
+    	
+    	//moet er later weer uit en dan in de klasse steen
+    	vergrotePedelPowerup = new VergrotePedelPowerup(this,200,200);
+    	this.addGameObject(vergrotePedelPowerup);
+    	
     	bal = new Bal(this);    
     	
     	float x = 10;
     	float y = 100;
-    	peddel = new Peddel(this,"Bram", 20,100);
-    	this.addGameObject(peddel);
     	
     	for(int i = 0; i < 10; i++) {
     		

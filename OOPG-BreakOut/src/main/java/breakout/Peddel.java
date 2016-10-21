@@ -14,20 +14,15 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	private BreakOut wereld;
 	
 	protected String naam;
-	protected int score;
-	protected int levens;
-	private int breedte;
-	private int hoogte;
-	private int minX;
-	private float maxX;
+	protected int score, levens;
+	private int breedte, hoogte;
+
 	
 	Peddel(BreakOut wereld, String naam,int hoogte, int breedte){
 		this.wereld = wereld;
 		this.naam = naam;
 		this.breedte = breedte;
 		this.hoogte = hoogte; 
-		minX = 30;
-		maxX = -200;
 		score = 0;
 		levens = 3;
 		setX(900/2-breedte);
@@ -46,18 +41,14 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
 		 PVector vector;
 		for(CollidedTile collide: collidedTiles){
-			System.out.println("collide");
+			setxSpeed(0);
 			if(collide.collisionSide == collide.RIGHT){
-				System.out.println(x);
-				setxSpeed(0);
 				vector = wereld.getTileMap().getTilePixelLocation(collide.theTile);
-                setX(vector.x+30);
+                setX(vector.x + wereld.getTileMap().getTileSize());
 			}
 			else if(collide.collisionSide == collide.LEFT){
-				setxSpeed(0);
 				vector = wereld.getTileMap().getTilePixelLocation(collide.theTile);
                 setX(vector.x-breedte);
-				System.out.println(wereld.width);
 			}
 		}
 		
