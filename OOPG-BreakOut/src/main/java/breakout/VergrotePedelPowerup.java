@@ -13,7 +13,7 @@ public class VergrotePedelPowerup extends GameObject implements IPowerup{
 		setY(y);
 		diameter = 30;
 		setHeight(diameter);
-        setWidth(diameter);
+        setWidth(diameter); 
 	}
 	
 	@Override
