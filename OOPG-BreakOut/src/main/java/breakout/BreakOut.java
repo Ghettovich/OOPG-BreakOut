@@ -33,8 +33,6 @@ public class BreakOut extends GameEngine {
 	@Override
 	public void setupGame() {
 		// TODO Auto-generated method stub
-        int worldWidth=1024;
-        int worldHeight=768;
         
         //initializeSound();
         createDashboard(worldWidth, 100);        
@@ -54,7 +52,7 @@ public class BreakOut extends GameEngine {
      */
     private void createViewWithoutViewport(int screenWidth, int screenHeight) {
         View view = new View(screenWidth,screenHeight);
-        view.setBackground(loadImage("src/main/java/breakout/media/Penguins.jpg"));
+        //view.setBackground(loadImage("src/main/java/breakout/media/Penguins.jpg"));
 
         setView(view);
         size(screenWidth, screenHeight);
@@ -66,6 +64,8 @@ public class BreakOut extends GameEngine {
     	
     	float x = 10;
     	float y = 100;
+    	peddel = new Peddel("Bram", 20,100);
+    	this.addGameObject(peddel);
     	
     	for(int i = 0; i < 10; i++) {
     		
@@ -90,20 +90,20 @@ public class BreakOut extends GameEngine {
         TileType[] tileTypes = { boardTileType };
         int tileSize=50;
         int tilesMap[][]={
+                {0,-1,0,0,0,0,0,0,0,0},
+                {-1,-1,0,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,0,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
+                {-1,-1,-1,-1,-1,-1,-1,-1,0,-1},
                 {-1,-1,-1, 0, 0, 0, 0,-1,0 , 0},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
                 {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1},
-                {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1}
+                {-1,-1,-1,-1,-1,-1,-1,-1,-1,0}
         };
         tileMap = new TileMap(tileSize, tileTypes, tilesMap);
     }
