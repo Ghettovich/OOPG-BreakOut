@@ -19,8 +19,11 @@ public class BreakOut extends GameEngine {
 	
 	private TextObject dashboardText;
 	private Bal bal;
+	private Peddel peddel;
 	
-	
+	private int worldWidth = 1000;
+	private int worldHeight = 700;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		PApplet.main(new String[]{"breakout.BreakOut"});
