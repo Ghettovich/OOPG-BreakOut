@@ -17,14 +17,13 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	
 	public Bal(BreakOut breakout) {
 		this.diameter = 25;
-		this.x = 612;
+		this.x = 412;
 		this.y = 200;
 		this.breakout = breakout;	
-		
+		this.breakout.addGameObject(this, getX(), getY());
 		setySpeed(-1);		
 		setWidth(diameter);
-		setHeight(diameter);		
-		this.breakout.addGameObject(this, getX(), getY());
+		setHeight(diameter);
 	}
 	
 		
@@ -46,6 +45,10 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	@Override
 	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
 		// TODO Auto-generated method stub
+		for(CollidedTile tiles : collidedTiles) {
+			
+			
+		}
 		
 	}
 

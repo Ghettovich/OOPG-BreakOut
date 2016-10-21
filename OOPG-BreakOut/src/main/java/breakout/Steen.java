@@ -9,12 +9,14 @@ import processing.core.PGraphics;
 public class Steen extends GameObject implements ICollidableWithGameObjects {
 	
 	private int breedte, hoogte, kleur;
+	private BreakOut breakout;
 
-	public Steen(int kleur, float x, float y) {
+	public Steen(BreakOut breakout, int kleur, float x, float y) {
 		// TODO Auto-generated constructor stub
 		this.breedte = 50;
 		this.hoogte = 30;
 		this.kleur = kleur;
+		this.breakout = breakout;
 		setY(y);
 		setX(x);		
 	}
@@ -22,7 +24,17 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		// TODO Auto-generated method stub
-		
+		for(GameObject gameObject : collidedGameObjects) {
+			
+			if(gameObject instanceof Steen) {
+				
+				breakout.deleteGameObject(gameObject);
+				
+				
+			}
+			
+			
+		}
 	}
 
 	@Override

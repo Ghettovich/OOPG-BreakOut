@@ -72,7 +72,7 @@ public class BreakOut extends GameEngine {
     	
     	for(int i = 0; i < 10; i++) {
     		
-    		Steen s = new Steen(120, x, y);
+    		Steen s = new Steen(this, 120, x, y);
     		addGameObject(s);    		
     		x += 55;    		
     	}
