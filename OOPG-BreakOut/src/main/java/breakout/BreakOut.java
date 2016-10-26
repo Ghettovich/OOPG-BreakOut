@@ -69,7 +69,7 @@ public class BreakOut extends GameEngine {
     	this.addGameObject(peddel);
     	
     	//moet er later weer uit en dan in de klasse steen
-    	vergrotePedelPowerup = new VergrotePedelPowerup(this,200,200);
+    	vergrotePedelPowerup = new VergrotePedelPowerup(this,peddel,50,200);
     	this.addGameObject(vergrotePedelPowerup);
     	
     	bal = new Bal(this);    
