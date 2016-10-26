@@ -59,7 +59,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	}
 
 	@Override
-	public void update() {
+	public void update() { 
 		// TODO Auto-generated method stub
 		
 	}

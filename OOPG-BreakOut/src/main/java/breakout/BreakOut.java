@@ -53,7 +53,7 @@ public class BreakOut extends GameEngine {
     /**
      * Creeërt de view zonder viewport
      * @param screenWidth Breedte van het scherm
-     * @param screenHeight Hoogte van het scherm
+     * @param screenHeight Hoogte van het scherm 
      */
     private void createViewWithoutViewport(int screenWidth, int screenHeight) {
         View view = new View(screenWidth,screenHeight);

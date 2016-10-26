@@ -11,7 +11,7 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup{
 	private Peddel peddel;
 	
 	public VergrotePedelPowerup(BreakOut wereld,Peddel peddel, int x, int y){
-		super(new Sprite("src/main/java/breakout/media/Penguins.jpg"));
+		super(new Sprite("src/main/java/breakout/media/powerup_increase.jpg"));
 		this.wereld = wereld;
 		this.peddel = peddel;
 		setX(x);
@@ -19,7 +19,7 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup{
 		diameter = 30;
 		setySpeed(diameter/25f);
 		setHeight(diameter);
-        setWidth(diameter); 
+        setWidth(diameter);  
 	}
 	
 	@Override
@@ -42,12 +42,4 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup{
 		}
 		
 	}
-
-	@Override
-	public void draw(PGraphics g) {
-		g.fill(156,89,189);
-		g.rect(getX(), getY(), diameter, diameter);
-		
-	}
-
 }
