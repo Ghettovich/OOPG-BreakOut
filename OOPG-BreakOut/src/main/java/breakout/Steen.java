@@ -18,6 +18,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		this.hoogte = 30;
 		this.kleur = kleur;
 		this.breakout = breakout;
+		
 		this.levens = 1;
 		setY(y);
 		setX(x);
@@ -48,6 +49,8 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	public void setLevens(int levens) {
 		this.levens = levens;
 	}
+	
+	
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
@@ -67,8 +70,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		// TODO Auto-generated method stub
 		//g.stroke(255, 255, 0);
 		g.fill(kleur);
-		g.rect(getX(), getY(), breedte, hoogte);
-		
+		g.rect(getX(), getY(), breedte, hoogte);	
 		
 	}
 

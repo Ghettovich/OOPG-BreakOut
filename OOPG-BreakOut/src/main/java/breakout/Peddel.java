@@ -43,7 +43,8 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 
 	@Override
 	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
-		 PVector vector;
+		
+		PVector vector;
 		for(CollidedTile collide: collidedTiles){
 			setxSpeed(0);
 			if(collide.collisionSide == collide.RIGHT){
@@ -54,8 +55,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 				vector = wereld.getTileMap().getTilePixelLocation(collide.theTile);
                 setX(vector.x-breedte);
 			}
-		}
-		
+		}		
 	}
 
 	@Override

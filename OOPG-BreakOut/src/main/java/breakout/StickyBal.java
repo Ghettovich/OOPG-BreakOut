@@ -2,9 +2,9 @@ package breakout;
 
 public class StickyBal extends Bal {
 
-	public StickyBal(BreakOut breakout) {
+	public StickyBal(BreakOut breakout,  float startX, float startY) {
 		// TODO Auto-generated constructor stub
-		super(breakout);
+		super(breakout, startX, startY);
 	}
 
 }

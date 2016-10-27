@@ -72,18 +72,44 @@ public class BreakOut extends GameEngine {
     	vergrotePedelPowerup = new VergrotePedelPowerup(this,peddel,50,200);
     	this.addGameObject(vergrotePedelPowerup);
     	
-    	bal = new Bal(this);    
+    	bal = new Bal(this, 220, 100);    
+    	addGameObject(bal);
     	
-    	float x = 10;
-    	float y = 100;
+    	int kleur =0xFFCD5A4A;
+    	tekenRodeStenen(15, kleur, 40, 200);
     	
-    	for(int i = 0; i < 10; i++) {
-    		
-    		Steen s = new Steen(this, 120, x, y);
-    		addGameObject(s);    		
-    		x += 55;    		
-    	}
+    	kleur = 0xFFD79B1C;
+    	tekenStenen(15, kleur, 40, 235);
+    	
+    	
+    	
+//    	kleur = 0xFF4146E9;
+//    	tekenStenen(15, kleur, 40, 170);   	
+//    	
+//    	kleur =  0xFFEDE84F;
+//    	tekenStenen(15, kleur, 40, 205);
+    	
 	}
+    
+    private void tekenStenen(int aantal, int kleur, float startX, float startY) {
+    	
+    	for(int i = 0; i < aantal; i++) {
+		
+			Steen s = new Steen(this, kleur, startX, startY);	
+			startX += 55;  
+			addGameObject(s);
+    	}    	
+    }   
+    
+    private void tekenRodeStenen(int aantal, int kleur, float startX, float startY) {
+    	
+    	for(int i = 0; i < aantal; i++) {
+		
+			RodeSteen s = new RodeSteen(this, kleur, startX, startY);	
+			startX += 55;  
+			addGameObject(s);
+    	}    	
+    } 
 
 	private void createDashboard(int dashboardWidth,int dashboardHeight) {
         Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);

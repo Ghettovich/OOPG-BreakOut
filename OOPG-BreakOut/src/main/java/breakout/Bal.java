@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.FieldAccessor_Float;
 
+import breakout.tile.MurenTile;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.CollidedTile;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithTiles;
@@ -14,51 +15,28 @@ import processing.core.PGraphics;
 public class Bal extends GameObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 
 	private BreakOut breakout;
-	private float direction;
 	private int diameter;
 	private int speed;
 	protected int kleur;
 	
-	public Bal(BreakOut breakout) {
-		this.diameter = 25;
-		this.x = 312;
-		this.y = 200;
-		this.speed = 2;
-		this.breakout = breakout;	
-		this.breakout.addGameObject(this, getX(), getY());
-		this.direction = 40;
-		this.setDirectionSpeed(direction, speed);
+	public Bal(BreakOut breakout, float startX, float startY) {
 		
-		setY(y);
-		setX(x);		
+		this.diameter = 30;		
+		this.speed = 2;
+		this.breakout = breakout;					
+		setxSpeed(-1);
+		setySpeed(-4);
+		setY(startY);
+		setX(startX);
 		setWidth(diameter);
 		setHeight(diameter);
 	}
 	
-		
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		setDirectionSpeed(direction, speed);		
-		
+		//setDirectionSpeed(direction, speed);		
 	}
-	
-//	For further answer you, this will give you the following://
-//		0 Degrees: Straight up;
-//		90 Degrees: Straight Right; 180 Degrees: Straight Down; 270 Degrees: Straight Left;//
-//		So lets test.
-//		0 - 45 = 360 - 45 = 315
-//		0 + 45 = 45
-//		Between 315 and 360 we have up. Between 0 and 45 too.
-//		90 - 45 = 45
-//		90 + 45 = 135
-//		Between 45 and 135 we have left.
-//		180 - 45 = 135
-//		180 + 45 = 225
-//		Between 135 and 225 we have down.
-//		270 - 45 = 225
-//		270 + 45 = 315	
-//		Between 225 and 315 we have left.
 	
 	@Override
 	public void draw(PGraphics g) {
@@ -72,9 +50,18 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	@Override
 	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
 		// TODO Auto-generated method stub
-		for(CollidedTile tiles : collidedTiles) {
-			
-			System.out.println("tile collision");
+		for(CollidedTile tile : collidedTiles) {
+							
+			if(tile.collisionSide == 1 ){
+				setxSpeed(2);
+			}
+			else if(tile.collisionSide == 2) {				
+				setySpeed(4);				
+				System.out.println("tile collision");
+			}
+			else if(tile.collisionSide == 3) {
+				setxSpeed(-2);
+			}					
 		}		
 	}
 
@@ -83,30 +70,46 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		// TODO Auto-generated method stub
 		for(GameObject o : collidedGameObjects) {
 			
-						
 			if(o instanceof Steen || o instanceof RodeSteen) {
-				
-				if(getDirection() >= 315 && getDirection() <= 360) {
-					//direction =
-					setDirection(direction);
-					
-				}
-				else if(getDirection() >= 0 && getDirection() <= 45) {
-					direction += 90;
-				}		
-				
-				setDirectionSpeed(direction, speed);	
-				
-				((Steen)o).setLevens(((Steen)o).getLevens() -1);			
-				if(((Steen)o).getLevens() < 1) {
-					
-					breakout.deleteGameObject(o);
-					//System.out.println("Steen collision");
 										
-				}				
-			}				
+								
+				System.out.println(o.calculateDirection(o.getxSpeed(), o.getySpeed()));
+				System.out.println(this.calculateDirection(this.getxSpeed(), this.getySpeed()));
+				
+				System.out.println(o.getAngleFrom(this));
+				
+				if(o.getAngleFrom(this) >= 270 && o.getAngleFrom(this) <= 360) {
+					setySpeed(-4);
+				
+				}
+				if(o.getAngleFrom(this) >= 0 && o.getAngleFrom(this) <= 45) {
+					setySpeed(-4);					
+				}			
+				if(o.getAngleFrom(this) >= 90 && o.getAngleFrom(this) <= 180) {
+					setySpeed(4);					
+				}	
+				if(o.getAngleFrom(this) >= 180 && o.getAngleFrom(this) <= 270) {
+					setySpeed(4);					
+				}	
+				
+												
+				if(o instanceof Steen || o instanceof RodeSteen) {
+					
+					((Steen)o).setLevens(((Steen)o).getLevens() -1);			
+					if(((Steen)o).getLevens() == 0) {
+						
+						breakout.deleteGameObject(o);
+						//System.out.println("Steen collision");
+											
+					}					
+				}
+			}
+			if(o instanceof Peddel) {
+				System.out.println("peddel collision");
+				setySpeed(-4);
+				
+			}
 		}		
-
 	}
 
 }

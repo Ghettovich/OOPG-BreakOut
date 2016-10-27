@@ -19,6 +19,7 @@ public class RodeSteen extends Steen implements ICollidableWithGameObjects {
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		// TODO Auto-generated method stub
 		
+		
 	}
 
 }
