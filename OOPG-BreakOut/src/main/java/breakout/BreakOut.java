@@ -22,6 +22,7 @@ public class BreakOut extends GameEngine {
 	private Peddel peddel;
 	//moet er later weer uit
 	private VergrotePedelPowerup vergrotePedelPowerup;
+	private StickyBalPowerup stickyBalPowerup;
 	
 	private int worldWidth = 900;
 	private int worldHeight = 600;
@@ -49,12 +50,12 @@ public class BreakOut extends GameEngine {
         //createViewWithViewport(worldWidth, worldHeight, 800, 800, 1.1f);
 		
 	}
-	
+ 
     /**
      * Creeërt de view zonder viewport
      * @param screenWidth Breedte van het scherm
      * @param screenHeight Hoogte van het scherm 
-     */
+     */ 
     private void createViewWithoutViewport(int screenWidth, int screenHeight) {
         View view = new View(screenWidth,screenHeight);
         //view.setBackground(loadImage("src/main/java/breakout/media/Penguins.jpg"));
@@ -69,8 +70,10 @@ public class BreakOut extends GameEngine {
     	this.addGameObject(peddel);
     	
     	//moet er later weer uit en dan in de klasse steen
-    	vergrotePedelPowerup = new VergrotePedelPowerup(this,peddel,50,200);
+    	vergrotePedelPowerup = new VergrotePedelPowerup(this,peddel,800,200);
     	this.addGameObject(vergrotePedelPowerup);
+    	stickyBalPowerup = new StickyBalPowerup(this,200,200);
+    	this.addGameObject(stickyBalPowerup);
     	
     	bal = new Bal(this, 220, 100);    
     	addGameObject(bal);

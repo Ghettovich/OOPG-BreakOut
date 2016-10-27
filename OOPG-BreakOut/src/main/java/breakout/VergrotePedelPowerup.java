@@ -5,41 +5,43 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 import processing.core.PGraphics;
 
-public class VergrotePedelPowerup extends SpriteObject implements IPowerup{
+public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 	private BreakOut wereld;
-	private int diameter;
+	private int breedte, hoogte;
 	private Peddel peddel;
 	
-	public VergrotePedelPowerup(BreakOut wereld,Peddel peddel, int x, int y){
-		super(new Sprite("src/main/java/breakout/media/powerup_increase.jpg"));
+	public VergrotePedelPowerup(BreakOut wereld, Peddel peddel, int x, int y) {
+		super(new Sprite("src/main/java/breakout/media/VergrotePeddelPowerup.jpg"));
 		this.wereld = wereld;
-		this.peddel = peddel;
+		this.peddel = peddel; 
 		setX(x);
 		setY(y);
-		diameter = 30;
-		setySpeed(diameter/25f);
-		setHeight(diameter);
-        setWidth(diameter);  
+		breedte = 50;
+		hoogte = 50;
+		setySpeed(1.2f);
+		setHeight(hoogte);
+		setWidth(breedte);
 	}
-	
+
 	@Override
 	public void doePowerup() {
 		wereld.deleteGameObject(this);
-				if(peddel.getX() <=peddel.getBreedte() + wereld.getTileMap().getTileSize()){
-					peddel.setX(wereld.getTileMap().getTileSize());
-				}
-				else{
-				peddel.setX(getX()-100);
-				}
-				peddel.setBreedte(200);
-				peddel.setWidth(200);
+		peddel.setBreedte(200);
+		peddel.setWidth(200);
+		if (peddel.getX() <= peddel.getBreedte() + wereld.getTileMap().getTileSize()) {
+			peddel.setX(wereld.getTileMap().getTileSize());
+		} else if (peddel.getX() >= wereld.getTileMap().getMapWidth() - peddel.getBreedte()) {
+			peddel.setX(wereld.getTileMap().getMapWidth() - peddel.getBreedte() - wereld.getTileMap().getTileSize());
+		} else {
+			peddel.setX(getX() - 100);
+		}
 	}
 
 	@Override
 	public void update() {
-		if(getY() >=  wereld.getTileMap().getMapHeight()){
+		if (getY() >= wereld.getTileMap().getMapHeight()) {
 			wereld.deleteGameObject(this);
 		}
-		
+
 	}
 }
