@@ -25,7 +25,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		this.hoogte = hoogte; 
 		score = 0;
 		levens = 3;
-		setX(wereld.getTileMap().getMapWidth()/2-breedte);
+		setX(wereld.getTileMap().getMapWidth()/2-breedte/2);
 		setY(wereld.getTileMap().getMapHeight()-100);
         setFriction(0.1f);
 		setHeight(hoogte);
@@ -35,8 +35,8 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for(GameObject collide : collidedGameObjects){
-			if (collide instanceof VergrotePedelPowerup){
-				((VergrotePedelPowerup) collide).doePowerup();
+			if (collide instanceof IPowerup){
+				((IPowerup) collide).doePowerup();
 			}
 		}
 	}

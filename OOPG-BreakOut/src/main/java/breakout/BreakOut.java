@@ -22,6 +22,7 @@ public class BreakOut extends GameEngine {
 	private Peddel peddel;
 	//moet er later weer uit
 	private VergrotePedelPowerup vergrotePedelPowerup;
+	private StickyBalPowerup stickyBalPowerup;
 	
 	private int worldWidth = 900;
 	private int worldHeight = 600;
@@ -69,8 +70,10 @@ public class BreakOut extends GameEngine {
     	this.addGameObject(peddel);
     	
     	//moet er later weer uit en dan in de klasse steen
-    	vergrotePedelPowerup = new VergrotePedelPowerup(this,peddel,50,200);
+    	vergrotePedelPowerup = new VergrotePedelPowerup(this,peddel,800,200);
     	this.addGameObject(vergrotePedelPowerup);
+    	stickyBalPowerup = new StickyBalPowerup(this,200,200);
+    	this.addGameObject(stickyBalPowerup);
     	
     	bal = new Bal(this);    
     	
