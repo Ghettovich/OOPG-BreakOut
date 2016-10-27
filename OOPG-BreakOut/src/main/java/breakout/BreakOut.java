@@ -50,7 +50,7 @@ public class BreakOut extends GameEngine {
         //createViewWithViewport(worldWidth, worldHeight, 800, 800, 1.1f);
 		
 	}
-	
+
     /**
      * Creeërt de view zonder viewport
      * @param screenWidth Breedte van het scherm
