@@ -6,7 +6,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 public class StickyBalPowerup extends SpriteObject implements IPowerup {
 	BreakOut wereld;
 	int breedte, hoogte;
-	
+	 
 	public StickyBalPowerup(BreakOut wereld, int x, int y) {
 		super(new Sprite("src/main/java/breakout/media/powerup_increase.jpg"));
 		this.wereld = wereld;

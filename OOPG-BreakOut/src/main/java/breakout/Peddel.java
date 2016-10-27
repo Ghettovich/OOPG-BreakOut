@@ -31,7 +31,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		setHeight(hoogte);
         setWidth(breedte);
 	}
-
+ 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for(GameObject collide : collidedGameObjects){
