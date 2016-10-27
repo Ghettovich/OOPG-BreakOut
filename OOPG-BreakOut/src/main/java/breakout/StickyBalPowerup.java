@@ -8,12 +8,12 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 	int breedte, hoogte;
 
 	public StickyBalPowerup(BreakOut wereld, int x, int y) {
-		super(new Sprite("src/main/java/breakout/media/powerup_increase.jpg"));
+		super(new Sprite("src/main/java/breakout/media/StickyBalPowerup.jpg"));
 		this.wereld = wereld;
 		setX(x);
 		setY(y);
 		breedte = 50;
-		hoogte = 12;
+		hoogte = 50;
 		setySpeed(1.2f);
 		setHeight(hoogte);
 		setWidth(breedte);
