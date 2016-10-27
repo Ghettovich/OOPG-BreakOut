@@ -9,7 +9,7 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 	private BreakOut wereld;
 	private int breedte, hoogte;
 	private Peddel peddel;
-
+	
 	public VergrotePedelPowerup(BreakOut wereld, Peddel peddel, int x, int y) {
 		super(new Sprite("src/main/java/breakout/media/powerup_increase.jpg"));
 		this.wereld = wereld;
