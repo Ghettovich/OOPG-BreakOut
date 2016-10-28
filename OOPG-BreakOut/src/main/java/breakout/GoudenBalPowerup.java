@@ -3,12 +3,12 @@ package breakout;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
-public class StickyBalPowerup extends SpriteObject implements IPowerup {
+public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 	BreakOut wereld;
 	int breedte, hoogte;
 
-	public StickyBalPowerup(BreakOut wereld, int x, int y) {
-		super(new Sprite("src/main/java/breakout/media/StickyBalPowerup.jpg"));
+	public GoudenBalPowerup(BreakOut wereld, int x, int y) {
+		super(new Sprite("src/main/java/breakout/media/GoudenBalPowerup.jpg"));
 		this.wereld = wereld;
 		setX(x);
 		setY(y);
@@ -28,5 +28,4 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 		// TODO Auto-generated method stub
 
 	}
-
 }

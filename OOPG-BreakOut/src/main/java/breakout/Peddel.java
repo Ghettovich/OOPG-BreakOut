@@ -15,14 +15,12 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	
 	protected String naam;
 	protected int score, levens;
-	private int breedte, hoogte;
+	private int tijd;
 
 	
 	Peddel(BreakOut wereld, String naam,int hoogte, int breedte){
 		this.wereld = wereld;
 		this.naam = naam;
-		this.breedte = breedte;
-		this.hoogte = hoogte; 
 		score = 0;
 		levens = 3;
 		setX(wereld.getTileMap().getMapWidth()/2-breedte/2);
@@ -53,21 +51,27 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 			}
 			else if(collide.collisionSide == collide.LEFT){
 				vector = wereld.getTileMap().getTilePixelLocation(collide.theTile);
-                setX(vector.x-breedte);
+                setX(vector.x-getWidth());
 			}
 		}		
 	}
 
 	@Override
 	public void update() { 
-		// TODO Auto-generated method stub
-		
+		if(getWidth() == 200){
+			tijd++;
+		}
+		if(tijd >= 600){
+			setWidth(100);
+			setX(getX()- 50);
+			tijd = 0;
+		}
 	}
 
 	@Override
 	public void draw(PGraphics g) {
 		g.fill(255);
-		g.rect(getX(), getY(), breedte, hoogte);
+		g.rect(getX(), getY(), getWidth(), getHeight());
 	}
 	
 	@Override
@@ -100,11 +104,5 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 
 	public String getNaam() {
 		return naam;
-	}
-	public void setBreedte(int breedte) {
-		this.breedte = breedte;
-	}
-	public int getBreedte() {
-		return breedte;
 	}
 }
