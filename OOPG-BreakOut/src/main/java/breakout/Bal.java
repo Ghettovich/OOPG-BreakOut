@@ -27,8 +27,8 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		this.speed = 2;
 		this.breakout = breakout;	
 		
-		setxSpeed(-2);
-		setySpeed(-2);
+		setxSpeed(-3);
+		setySpeed(-3);
 		
 		//setDirectionSpeed(30, speed);
 		
@@ -44,9 +44,8 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		//setDirectionSpeed(direction, speed);		
 		if(this.getY() >= breakout.getHeight()) {
 			System.out.println("DOOD");
-			
+			breakout.deleteGameObject(this);
 		}
-		
 	}
 	
 	@Override
@@ -85,10 +84,8 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 					breakout.deleteGameObject(o);
 				}
 			}
-			if(o instanceof Peddel) {
-				
-				setySpeed(-3);
-				
+			if(o instanceof Peddel) {				
+				setySpeed(-3);				
 			}
 		}		
 	}
@@ -104,10 +101,9 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 			setySpeed(-3);		
 			//flipYSpeed();
 		}
-		else if(objectAngle >= 45 && objectAngle < 135) {
+		else if(objectAngle >= 45 && objectAngle < 135) {			
 			setxSpeed(3);			
-			//flipXSpeed();
-			
+			//flipXSpeed();			
 		}
 		else if(objectAngle >=135 && objectAngle < 180) {
 			setySpeed(3);		
