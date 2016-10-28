@@ -8,8 +8,8 @@ import processing.core.PGraphics;
 
 public class Steen extends GameObject implements ICollidableWithGameObjects {
 	
-	private int breedte, hoogte, kleur;
-	protected int levens;
+	protected int breedte, hoogte, kleur;
+	private int levens;
 	private BreakOut breakout;
 
 	public Steen(BreakOut breakout, int kleur, float x, float y) {
@@ -50,7 +50,9 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		this.levens = levens;
 	}
 	
-	
+	public void minLeven() {
+		levens--;
+	}
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
@@ -68,7 +70,6 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	@Override
 	public void draw(PGraphics g) {
 		// TODO Auto-generated method stub
-		//g.stroke(255, 255, 0);
 		g.fill(kleur);
 		g.rect(getX(), getY(), breedte, hoogte);	
 		

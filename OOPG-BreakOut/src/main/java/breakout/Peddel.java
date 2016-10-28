@@ -14,7 +14,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	private BreakOut wereld;
 	
 	protected String naam;
-	protected int score, levens;
+	protected int score, levens;	
 	private int tijd;
 
 	
@@ -84,6 +84,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
             setDirectionSpeed(90, speed);
         }
 	}
+	
 	
 	///getters en setters
 	public int getScore() {

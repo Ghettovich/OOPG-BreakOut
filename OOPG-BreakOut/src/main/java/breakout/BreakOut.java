@@ -75,22 +75,24 @@ public class BreakOut extends GameEngine {
     	stickyBalPowerup = new StickyBalPowerup(this,200,200);
     	this.addGameObject(stickyBalPowerup);
     	
-    	bal = new Bal(this, 220, 100);    
+    	bal = new Bal(this, 670, 500);    
     	addGameObject(bal);
     	
     	int kleur =0xFFCD5A4A;
-    	tekenRodeStenen(15, kleur, 40, 200);
+    	
+    	tekenRodeStenen(15, kleur, 40, 100);
     	
     	kleur = 0xFFD79B1C;
-    	tekenStenen(15, kleur, 40, 235);
+    	tekenStenen(15, kleur, 40, 135);   	
     	
+    	kleur = 0xFF4146E9;
+    	tekenStenen(15, kleur, 40, 170);   	
     	
+    	kleur =  0xFFEDE84F;
+    	tekenStenen(15, kleur, 40, 205);
     	
-//    	kleur = 0xFF4146E9;
-//    	tekenStenen(15, kleur, 40, 170);   	
-//    	
-//    	kleur =  0xFFEDE84F;
-//    	tekenStenen(15, kleur, 40, 205);
+    	kleur =  0xFFEDE84F;
+    	tekenStenen(15, kleur, 40, 240);
     	
 	}
     
