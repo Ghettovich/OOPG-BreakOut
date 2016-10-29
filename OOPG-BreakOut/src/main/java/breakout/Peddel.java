@@ -11,30 +11,77 @@ import processing.core.PGraphics;
 import processing.core.PVector;
 
 public class Peddel extends GameObject implements ICollidableWithTiles, ICollidableWithGameObjects, IKeyInput {
-	private BreakOut wereld;
 	
+	private BreakOut wereld;	
+	private Bal bal;
+	private StickyBalPowerup stickyBal;
 	protected String naam;
-	protected int score, levens;	
+	protected int score, levens, hoogte, breedte;
+	
 	private int tijd;
+	private boolean stickyBalActief;
 
 	
+
 	Peddel(BreakOut wereld, String naam,int hoogte, int breedte){
 		this.wereld = wereld;
 		this.naam = naam;
+		this.hoogte = hoogte;
+		this.breedte = breedte;
+		this.stickyBalActief = false;
 		score = 0;
 		levens = 3;
 		setX(wereld.getTileMap().getMapWidth()/2-breedte/2);
-		setY(wereld.getTileMap().getMapHeight()-100);
+		setY(wereld.getTileMap().getMapHeight()-50);
         setFriction(0.1f);
 		setHeight(hoogte);
         setWidth(breedte);
 	}
- 
+	
+	public boolean isStickyBalActief() {
+		return stickyBalActief;
+	}
+
+	public void setStickyBalActief(boolean stickyBalActief) {
+		stickyBalActief = true;
+		this.stickyBalActief = stickyBalActief;
+	}
+
+	
+	public void setBal(Bal bal) {
+		this.bal = bal;		
+	}
+	 
+	public int getHoogte() {
+		return hoogte;
+	}
+
+	public void setHoogte(int hoogte) {
+		this.hoogte = hoogte;
+	}
+
+	public int getBreedte() {
+		return breedte;
+	}
+
+	public void setBreedte(int breedte) {
+		this.breedte = breedte;
+	}
+	
+	public void setStickyBal(StickyBalPowerup stickyBal) {
+		stickyBalActief = true;
+		this.stickyBal = stickyBal;
+	}
+	
+	public StickyBalPowerup getStickyBallPowerup() {
+		return stickyBal;
+	}
+
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for(GameObject collide : collidedGameObjects){
 			if (collide instanceof IPowerup){
-				((IPowerup) collide).doePowerup();
+				((IPowerup) collide).doePowerup(bal);
 			}
 		}
 	}
@@ -72,6 +119,8 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	public void draw(PGraphics g) {
 		g.fill(255);
 		g.rect(getX(), getY(), getWidth(), getHeight());
+		
+
 	}
 	
 	@Override
@@ -83,8 +132,17 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
         if (keyCode == wereld.RIGHT) {
             setDirectionSpeed(90, speed);
         }
-	}
+	}	
 	
+	public boolean stickyBalOpPeddel() {
+		if(getY() + bal.getDiameter() == bal.getY() && getX() >= bal.getX() &&
+						getX() <= bal.getX() + getBreedte()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
 	///getters en setters
 	public int getScore() {
@@ -105,5 +163,9 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 
 	public String getNaam() {
 		return naam;
+	}
+	
+	public void levenMinder() {
+		levens--;
 	}
 }

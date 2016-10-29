@@ -9,7 +9,7 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 	private BreakOut wereld;
 	private Peddel peddel;
 	
-	public VergrotePedelPowerup(BreakOut wereld, Peddel peddel, int x, int y) {
+	public VergrotePedelPowerup(BreakOut wereld, Peddel peddel, float x, float y) {
 		super(new Sprite("src/main/java/breakout/media/VergrotePeddelPowerup.jpg"));
 		this.wereld = wereld;
 		this.peddel = peddel; 
@@ -24,7 +24,7 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 	public void doePowerup() {
 		wereld.deleteGameObject(this);
 		peddel.setWidth(200);
-		peddel.setWidth(200);
+		//peddel.setWidth(200);
 		if (peddel.getX() <= peddel.getWidth() + wereld.getTileMap().getTileSize()) {
 			peddel.setX(wereld.getTileMap().getTileSize());
 		} else if (peddel.getX() >= wereld.getTileMap().getMapWidth() - peddel.getWidth()) {
@@ -39,5 +39,11 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 		if (getY() >= wereld.getTileMap().getMapHeight()) {
 			wereld.deleteGameObject(this);
 		}
+	}
+
+	@Override
+	public void doePowerup(Bal bal) {
+		// TODO Auto-generated method stub
+		
 	}
 }

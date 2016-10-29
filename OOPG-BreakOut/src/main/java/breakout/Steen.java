@@ -1,6 +1,7 @@
 package breakout;
 
 import java.util.List;
+import java.util.Random;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
@@ -9,7 +10,7 @@ import processing.core.PGraphics;
 public class Steen extends GameObject implements ICollidableWithGameObjects {
 	
 	protected int breedte, hoogte, kleur;
-	private int levens;
+	private int levens;	
 	private BreakOut breakout;
 
 	public Steen(BreakOut breakout, int kleur, float x, float y) {
@@ -17,8 +18,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		this.breedte = 50;
 		this.hoogte = 30;
 		this.kleur = kleur;
-		this.breakout = breakout;
-		
+		this.breakout = breakout;		
 		this.levens = 1;
 		setY(y);
 		setX(x);
@@ -57,10 +57,10 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		// TODO Auto-generated method stub
-		
-
 	}
-
+	
+	
+	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub

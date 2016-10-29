@@ -1,13 +1,18 @@
 package breakout;
 
+import com.sun.glass.ui.Timer;
+
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 	BreakOut wereld;
-	int breedte, hoogte;
+	Bal bal;
+	int breedte, hoogte, duratie;
+	
+	
 
-	public GoudenBalPowerup(BreakOut wereld, int x, int y) {
+	public GoudenBalPowerup(BreakOut wereld, float x, float y) {
 		super(new Sprite("src/main/java/breakout/media/GoudenBalPowerup.jpg"));
 		this.wereld = wereld;
 		setX(x);
@@ -18,14 +23,21 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 	}
 
 	@Override
-	public void doePowerup() {
+	public void doePowerup(Bal b) {
 		wereld.deleteGameObject(this);
-
+		bal.setGoudenBal(this);
+		
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void doePowerup() {
+		// TODO Auto-generated method stub
+		
 	}
 }

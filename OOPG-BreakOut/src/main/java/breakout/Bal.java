@@ -1,6 +1,8 @@
 package breakout;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.sun.xml.internal.bind.v2.runtime.reflect.opt.FieldAccessor_Float;
 
@@ -19,23 +21,25 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	private BreakOut breakout;
 	private int diameter;
 	private float speed;
-	protected int kleur;    
 	
-	public Bal(BreakOut breakout, float startX, float startY) {
+	protected int kleur;  
+	
+	private Peddel peddel;
+	private GoudenBalPowerup goudenBal;
+	private StickyBalPowerup stickyBal;
+	private VergrotePedelPowerup vergrotePeddel;
 		
+	
+	public Bal(BreakOut breakout, Peddel peddel) {		
 		this.diameter = 30;		
 		this.speed = 2;
-		this.breakout = breakout;	
-		
-		setxSpeed(-3);
-		setySpeed(-3);
-		
-		//setDirectionSpeed(30, speed);
-		
-		setY(startY);
-		setX(startX);
+		this.breakout = breakout;
+		this.peddel = peddel;
+		setY(peddel.getY() - 30);
+		setX(peddel.getX() + diameter);		
 		setWidth(diameter);
 		setHeight(diameter);
+		
 	}
 	
 	@Override
@@ -48,9 +52,37 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		}
 	}
 	
+	public int getDiameter() {
+		return diameter;
+	}
+	
+	public GoudenBalPowerup getGoudenBal() {
+		return goudenBal;
+	}
+
+	public void setGoudenBal(GoudenBalPowerup goudenBal) {
+		this.goudenBal = goudenBal;
+	}
+
+	public StickyBalPowerup getStickyBal() {
+		return stickyBal;
+	}
+
+	public void setStickyBal(StickyBalPowerup stickyBal) {
+		this.stickyBal = stickyBal;
+	}
+
+	public VergrotePedelPowerup getVergrotePeddel() {
+		return vergrotePeddel;
+	}
+
+	public void setVergrotePeddel(VergrotePedelPowerup vergrotePeddel) {
+		this.vergrotePeddel = vergrotePeddel;
+	}
+
 	@Override
 	public void draw(PGraphics g) {
-		// TODO Auto-generated method stub		
+		// TODO Auto-generated method stub
         g.ellipseMode(g.CORNER); 
         g.stroke(0, 50, 200, 100);
         g.fill(0, 50, 200, 255);
@@ -64,8 +96,8 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		for(CollidedTile tile : collidedTiles) {
 			vector = breakout.getTileMap().getTilePixelLocation(tile.theTile);
 			berekenBounceTile(this.getAngleFrom(((int)vector.x), ((int)vector.y)), tile);		
-			System.out.println("tile collision angle:" + this.getAngleFrom(((int)vector.x), ((int)vector.y)));
-			System.out.println("bereken bal direction vanaf tile: " +this.calculateDirection(vector.x, vector.y));
+			//System.out.println("tile collision angle:" + this.getAngleFrom(((int)vector.x), ((int)vector.y)));
+			//System.out.println("bereken bal direction vanaf tile: " +this.calculateDirection(vector.x, vector.y));
 		}		
 	}
 
@@ -74,24 +106,56 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		// TODO Auto-generated method stub
 		for(GameObject o : collidedGameObjects) {
 			
-			if(o instanceof Steen || o instanceof RodeSteen) {
-							
-				System.out.println("bereken bal direction " + this.calculateDirection(this.getxSpeed(), this.getySpeed()));				
-				System.out.println("hoek van object (steen) " + o.getAngleFrom(this));				
+			if(o instanceof Steen) {
+											
 				berekenBounceSteen(o.getAngleFrom(this));
-				
-				if(o instanceof Steen) {					
-					breakout.deleteGameObject(o);
+				Random r = new Random();
+				int rGetal = 1;
+								
+				if(rGetal == 1) {
+					StickyBalPowerup stickyBal = new StickyBalPowerup(breakout, this, peddel, o.getX(), o.getY());					
+					stickyBal.setAantalKeerVasthouden(3);
+					breakout.addGameObject(stickyBal);
 				}
+//				else if(rGetal == 2) {
+//					goudenBal = new GoudenBalPowerup(breakout, o.getX(), o.getY());					
+//					breakout.addGameObject(goudenBal);			
+//				}
+//				else if(rGetal == 3) {
+//					vergrotePeddel = new VergrotePedelPowerup(breakout, peddel, o.getX(), o.getY());
+//					breakout.addGameObject(vergrotePeddel);
+//				}
+				breakout.deleteGameObject(o);
 			}
-			if(o instanceof Peddel) {				
-				setySpeed(-3);				
+			if(o instanceof Peddel) {
+				
+				if(peddel.isStickyBalActief() && peddel.getStickyBallPowerup().powerUpActief()) {					
+					System.out.println("peddel geraakt, stickybal actief | aantalkeervast = " + peddel.getStickyBallPowerup().getAantalKeerVasthouden());
+					peddel.getStickyBallPowerup().usePowerUp();
+					setY(getY()- 5);
+					setxSpeed(0);
+					setySpeed(0);
+				}
+				else
+				{
+					setySpeed(-3);
+				}				
 			}
 		}		
 	}
 	
 	@Override
 	public void keyPressed(int keyCode, char key){
+		
+		if((getxSpeed() == 0 && getySpeed() == 0)) { //|| stickyBal.powerUpActief()) {
+		
+			if(keyCode == breakout.UP) {
+				
+				setxSpeed(1);
+				setySpeed(-3);	
+				
+			}		
+		}
 
 	}
 	

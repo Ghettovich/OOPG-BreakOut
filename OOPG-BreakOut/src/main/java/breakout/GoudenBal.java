@@ -2,9 +2,9 @@ package breakout;
 
 public class GoudenBal extends Bal {
 
-	public GoudenBal(BreakOut breakout, float startX, float startY) {
+	public GoudenBal(BreakOut breakout, Peddel peddel) {
 		// TODO Auto-generated constructor stub
-		super(breakout, startX, startY);
+		super(breakout, peddel);
 	}
 	
 	
