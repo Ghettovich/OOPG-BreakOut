@@ -17,11 +17,9 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	private StickyBalPowerup stickyBal;
 	protected String naam;
 	protected int score, levens, hoogte, breedte;
-	
 	private int tijd;
 	private boolean stickyBalActief;
 
-	
 
 	Peddel(BreakOut wereld, String naam,int hoogte, int breedte){
 		this.wereld = wereld;
@@ -46,7 +44,6 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		stickyBalActief = true;
 		this.stickyBalActief = stickyBalActief;
 	}
-
 	
 	public void setBal(Bal bal) {
 		this.bal = bal;		
@@ -112,9 +109,17 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 			setWidth(100);
 			setX(getX()- 50);
 			tijd = 0;
+		}	
+		if(stickyBalOpPeddel() && isStickyBalActief()) {
+			
+			bal.setxSpeed(0);
+			bal.setySpeed(0);
+			bal.setX(getX() + (getBreedte() / 2));
+			bal.setY(getY() - bal.getDiameter());	
+			System.out.println("bal op peddel | bal y + dia = " + (bal.getY() + bal.getDiameter()) + " | peddel y =  " + getY());
 		}
 	}
-
+	
 	@Override
 	public void draw(PGraphics g) {
 		g.fill(255);
@@ -132,16 +137,32 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
         if (keyCode == wereld.RIGHT) {
             setDirectionSpeed(90, speed);
         }
+        
+        if(keyCode == wereld.UP) {
+        	
+        	System.out.println("up pressed" );
+    		if((bal.getxSpeed() == 0 && bal.getySpeed() == 0)) { //|| stickyBal.powerUpActief()) {
+    			
+    			System.out.println("speed = 0 set speed" );
+    			bal.setY(bal.getY() - 5);
+				bal.setxSpeed(1);
+				bal.setySpeed(-3);	
+				
+			}	
+		}
+
 	}	
 	
 	public boolean stickyBalOpPeddel() {
-		if(getY() + bal.getDiameter() == bal.getY() && getX() >= bal.getX() &&
-						getX() <= bal.getX() + getBreedte()) {
+		//System.out.println("bal op peddel | bal y + dia = " + (bal.getY() + bal.getDiameter()) + " | peddel y =  " + getY());
+		if( bal.getY() + bal.getHeight() >= getY() && (bal.getCenterX() >= getX() && bal.getCenterX() <= (getX() + getBreedte()))) {
+			
 			return true;
 		}
 		else {
 			return false;
 		}
+		
 	}
 	
 	///getters en setters

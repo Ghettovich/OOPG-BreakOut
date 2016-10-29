@@ -20,26 +20,22 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 
 	private BreakOut breakout;
 	private int diameter;
-	private float speed;
-	
-	protected int kleur;  
-	
+	private float speed;	
+	protected int kleur;  	
 	private Peddel peddel;
 	private GoudenBalPowerup goudenBal;
 	private StickyBalPowerup stickyBal;
 	private VergrotePedelPowerup vergrotePeddel;
 		
-	
 	public Bal(BreakOut breakout, Peddel peddel) {		
 		this.diameter = 30;		
 		this.speed = 2;
 		this.breakout = breakout;
 		this.peddel = peddel;
-		setY(peddel.getY() - 30);
+		setY(peddel.getY() - diameter);
 		setX(peddel.getX() + diameter);		
 		setWidth(diameter);
 		setHeight(diameter);
-		
 	}
 	
 	@Override
@@ -88,7 +84,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
         g.fill(0, 50, 200, 255);
         g.ellipse(getX(), getY(), diameter, diameter);				
 	}
-
+	
 	@Override
 	public void tileCollisionOccurred(List<CollidedTile> collidedTiles) {
 		// TODO Auto-generated method stub
@@ -132,6 +128,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 				if(peddel.isStickyBalActief() && peddel.getStickyBallPowerup().powerUpActief()) {					
 					System.out.println("peddel geraakt, stickybal actief | aantalkeervast = " + peddel.getStickyBallPowerup().getAantalKeerVasthouden());
 					peddel.getStickyBallPowerup().usePowerUp();
+					
 					setY(getY()- 5);
 					setxSpeed(0);
 					setySpeed(0);
@@ -147,16 +144,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	@Override
 	public void keyPressed(int keyCode, char key){
 		
-		if((getxSpeed() == 0 && getySpeed() == 0)) { //|| stickyBal.powerUpActief()) {
 		
-			if(keyCode == breakout.UP) {
-				
-				setxSpeed(1);
-				setySpeed(-3);	
-				
-			}		
-		}
-
 	}
 	
 	private void berekenBounceSteen(float objectAngle) {
