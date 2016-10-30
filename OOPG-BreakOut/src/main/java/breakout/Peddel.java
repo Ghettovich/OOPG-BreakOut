@@ -20,7 +20,6 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	private int tijd;
 	private boolean stickyBalActief;
 
-
 	Peddel(BreakOut wereld, String naam,int hoogte, int breedte){
 		this.wereld = wereld;
 		this.naam = naam;
@@ -36,8 +35,12 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
         setWidth(breedte);
 	}
 	
-	public boolean isStickyBalActief() {
+	public boolean getStickyBalActief() {
 		return stickyBalActief;
+	}
+	
+	public void setStickyBalActief(boolean stickyBalActief) {
+		this.stickyBalActief = stickyBalActief;
 	}
 
 	public void setBal(Bal bal) {
@@ -60,8 +63,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		this.breedte = breedte;
 	}
 	
-	public void setStickyBal(StickyBalPowerup stickyBal) {
-		stickyBalActief = true;
+	public void setStickyBal(StickyBalPowerup stickyBal) {		
 		this.stickyBal = stickyBal;
 	}
 	
@@ -74,10 +76,10 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		for(GameObject collide : collidedGameObjects){
 			if (collide instanceof IPowerup){
 				if(collide instanceof StickyBalPowerup) {					
-					((IPowerup) collide).doePowerup(bal, this);
+					((StickyBalPowerup) collide).doePowerup(bal, this);
 				}
 				else if(collide instanceof GoudenBalPowerup) {
-					((IPowerup) collide).doePowerup(bal);
+					((GoudenBalPowerup) collide).doePowerup(bal);
 				}
 				else if(collide instanceof VergrotePedelPowerup) { 
 					((VergrotePedelPowerup) collide).setPeddel(this);
@@ -114,8 +116,9 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 			setX(getX()- 50);
 			tijd = 0;
 		}	
-		if(balOpPeddel()) {			
-			if(isStickyBalActief() && bal.getSpeed() > 0) {
+		if(balOpPeddel()) {						
+			
+			if(getStickyBalActief()) {
 				bal.setxSpeed(0);
 				bal.setySpeed(0);
 			}		
@@ -146,7 +149,11 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
     			System.out.println("speed = 0 set speed" );
     			bal.setY(bal.getY() - 5);
 				bal.setySpeed(-3);
-				bal.setxSpeed(-1);
+				if(stickyBalActief) {
+					stickyBal.usePowerUp();
+				}
+				
+				//bal.setxSpeed(-1);
 			}	
 		}
 	}	

@@ -44,9 +44,17 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	public void update() {
 		// TODO Auto-generated method stub	
 		if(this.getY() >= breakout.getHeight()) {
-			System.out.println("DOOD");
-			breakout.deleteGameObject(this);
+			
+			if(peddel.getLevens() < 1) {
+				System.out.println("DOOD");
+			}
+			else {
+				setY(peddel.getY() - diameter);
+				setX(peddel.getX() + diameter);	
+				setSpeed(0);
+			}
 		}
+		
 	}
 	
 	public int getDiameter() {
@@ -83,15 +91,10 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 			if(o instanceof Steen) {											
 				berekenBounceSteen(o.getAngleFrom(this));				
 			}
-			if(o instanceof Peddel) {
-				
-				if(peddel.isStickyBalActief()) {	
-					stickyBal.setPeddel(peddel);
+			if(o instanceof Peddel) {				
+				if(peddel.getStickyBalActief()) {	
+					stickyBal.setPeddel(peddel);					
 					System.out.println("peddel geraakt, stickybal actief | aantalkeervast = " + peddel.getStickyBallPowerup().getAantalKeerVasthouden());
-					peddel.getStickyBallPowerup().usePowerUp();					
-					setY(getY()- 5);
-					setxSpeed(0);
-					setySpeed(0);
 				}
 				else
 				{
