@@ -12,7 +12,7 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 	BreakOut wereld;
 
 
-	public StickyBalPowerup(BreakOut wereld, Bal b, Peddel peddel, float x, float y) {
+	public StickyBalPowerup(BreakOut wereld, Bal b, float x, float y) {
 		super(new Sprite("src/main/java/breakout/media/StickyBalPowerup.jpg"));
 		this.wereld = wereld;
 		this.bal = bal;
@@ -24,8 +24,6 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 		setWidth(50);
 	}
 	
-
-	
 	public int getAantalKeerVasthouden() {
 		return aantalKeerVasthouden;
 	}	
@@ -34,6 +32,10 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 		this.aantalKeerVasthouden = aantalKeerVasthouden;
 	}
 		
+	public void setPeddel(Peddel peddel) {
+		this.peddel = peddel;
+	}
+
 	public boolean powerUpActief() {
 		if(aantalKeerVasthouden > 0) {
 			return true;
@@ -50,30 +52,15 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 	
 	@Override
 	public void doePowerup(Bal b) {
-		this.bal = b;
-		aantalKeerVasthouden = 3;
-		b.setStickyBal(this);	
-		peddel.setStickyBal(this);		
-		System.out.println("sticky bal opgepakt door de peddel");
-		wereld.deleteGameObject(this);
+
 		
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		
-		if (bal != null) {
-			if(peddel.getY() == this.getY() + bal.getDiameter() && this.getX() >= peddel.getX() &&
-					this.getX() <= peddel.getX() + peddel.getBreedte() ) {
-				
-				peddel.setX(getX() + peddel.getCenterX());			
-				bal.setxSpeed(0);
-				bal.setySpeed(0);
-				setSpeed(0);
-				System.out.println("stickybal actief peddel collision");
-				
-			}
+		if(aantalKeerVasthouden == 0) {
+			wereld.deleteGameObject(this);
 		}
 	}
 
@@ -81,6 +68,18 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 	public void doePowerup() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void doePowerup(Bal bal, Peddel peddel) {
+		// TODO Auto-generated method stub
+		this.bal = bal;
+		this.peddel = peddel;
+		aantalKeerVasthouden = 3;
+		bal.setStickyBal(this);
+		peddel.setStickyBal(this);
+		System.out.println("sticky bal opgepakt door de peddel");
+		wereld.deleteGameObject(this);
 	}
 
 }

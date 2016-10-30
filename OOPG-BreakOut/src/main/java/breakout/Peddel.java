@@ -78,7 +78,16 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		for(GameObject collide : collidedGameObjects){
 			if (collide instanceof IPowerup){
-				((IPowerup) collide).doePowerup(bal);
+				if(collide instanceof StickyBalPowerup) {					
+					((IPowerup) collide).doePowerup(bal, this);
+				}
+				else if(collide instanceof GoudenBalPowerup) {
+					((IPowerup) collide).doePowerup(bal);
+				}
+				else if(collide instanceof VergrotePedelPowerup) { 
+					((VergrotePedelPowerup) collide).setPeddel(this);
+					((VergrotePedelPowerup) collide).doePowerup();
+				}
 			}
 		}
 	}
@@ -110,11 +119,12 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 			setX(getX()- 50);
 			tijd = 0;
 		}	
-		if(stickyBalOpPeddel() && isStickyBalActief()) {
-			
-			bal.setxSpeed(0);
-			bal.setySpeed(0);
-			bal.setX(getX() + (getBreedte() / 2));
+		if(balOpPeddel()) {			
+			if(isStickyBalActief() && bal.getSpeed() > 0) {
+				bal.setxSpeed(0);
+				bal.setySpeed(0);
+			}		
+			bal.setX(getCenterX() - bal.getDiameter() / 2);
 			bal.setY(getY() - bal.getDiameter());	
 			System.out.println("bal op peddel | bal y + dia = " + (bal.getY() + bal.getDiameter()) + " | peddel y =  " + getY());
 		}
@@ -124,8 +134,6 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	public void draw(PGraphics g) {
 		g.fill(255);
 		g.rect(getX(), getY(), getWidth(), getHeight());
-		
-
 	}
 	
 	@Override
@@ -136,33 +144,26 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
         }
         if (keyCode == wereld.RIGHT) {
             setDirectionSpeed(90, speed);
-        }
-        
-        if(keyCode == wereld.UP) {
-        	
+        }        
+        if(keyCode == wereld.UP) {        	
         	System.out.println("up pressed" );
-    		if((bal.getxSpeed() == 0 && bal.getySpeed() == 0)) { //|| stickyBal.powerUpActief()) {
-    			
+    		if((bal.getxSpeed() == 0 && bal.getySpeed() == 0)) {     			
     			System.out.println("speed = 0 set speed" );
     			bal.setY(bal.getY() - 5);
-				bal.setxSpeed(1);
-				bal.setySpeed(-3);	
-				
+				bal.setySpeed(-3);
+				bal.setxSpeed(-1);
 			}	
 		}
-
 	}	
 	
-	public boolean stickyBalOpPeddel() {
+	public boolean balOpPeddel() {
 		//System.out.println("bal op peddel | bal y + dia = " + (bal.getY() + bal.getDiameter()) + " | peddel y =  " + getY());
-		if( bal.getY() + bal.getHeight() >= getY() && (bal.getCenterX() >= getX() && bal.getCenterX() <= (getX() + getBreedte()))) {
-			
+		if( bal.getY() + bal.getHeight() >= getY() && (bal.getCenterX() >= getX() && bal.getCenterX() <= (getX() + getBreedte()))) {			
 			return true;
 		}
 		else {
 			return false;
-		}
-		
+		}		
 	}
 	
 	///getters en setters

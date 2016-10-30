@@ -10,7 +10,7 @@ import processing.core.PGraphics;
 public class Steen extends GameObject implements ICollidableWithGameObjects {
 	
 	protected int breedte, hoogte, kleur;
-	private int levens;	
+	protected int levens;	
 	private BreakOut breakout;
 
 	public Steen(BreakOut breakout, int kleur, float x, float y) {
@@ -51,20 +51,45 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	}
 	
 	public void minLeven() {
-		levens--;
+		levens --;
 	}
 
 	@Override
 	public void gameObjectCollisionOccurred(List<GameObject> collidedGameObjects) {
 		// TODO Auto-generated method stub
+		for(GameObject o : collidedGameObjects) {			
+			if(o instanceof Bal) {
+				spawnRandomPowerUp((Bal)o);	
+				minLeven();				
+			}
+		}
 	}
 	
-	
+	public void spawnRandomPowerUp(Bal bal) {
+		Random r = new Random();
+		int rGetal = r.nextInt(30);
+		
+		if(rGetal == 1) {
+			StickyBalPowerup stickyBal = new StickyBalPowerup(breakout, bal, getX(), getY());					
+			stickyBal.setAantalKeerVasthouden(3);			
+			breakout.addGameObject(stickyBal);
+		}
+		else if(rGetal == 2) {
+			GoudenBalPowerup goudenBal = new GoudenBalPowerup(breakout, getX(), getY());					
+			breakout.addGameObject(goudenBal);			
+		}
+		else if(rGetal == 3) {
+			VergrotePedelPowerup vergrotePeddel = new VergrotePedelPowerup(breakout, getX(), getY());
+			breakout.addGameObject(vergrotePeddel);
+		}
+	}
 	
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-	
+		if(levens < 1) {			
+			breakout.deleteGameObject(this);
+		}	
 	}
 
 	@Override

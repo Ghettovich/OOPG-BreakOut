@@ -9,17 +9,20 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 	private BreakOut wereld;
 	private Peddel peddel;
 	
-	public VergrotePedelPowerup(BreakOut wereld, Peddel peddel, float x, float y) {
+	public VergrotePedelPowerup(BreakOut wereld, float x, float y) {
 		super(new Sprite("src/main/java/breakout/media/VergrotePeddelPowerup.jpg"));
 		this.wereld = wereld;
-		this.peddel = peddel; 
 		setX(x);
 		setY(y);
 		setySpeed(1.2f);
 		setHeight(50);
 		setWidth(50);
 	}
-
+	
+	public void setPeddel(Peddel peddel) {
+		this.peddel = peddel;
+	}
+	
 	@Override
 	public void doePowerup() {
 		wereld.deleteGameObject(this);
@@ -43,6 +46,12 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 
 	@Override
 	public void doePowerup(Bal bal) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void doePowerup(Bal bal, Peddel peddel) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -17,13 +17,11 @@ import processing.core.PApplet;
 
 public class BreakOut extends GameEngine {
 	
+	private Sound backgroundSound;
+    private Sound bubblePopSound;
 	private TextObject dashboardText;
 	private Bal bal;
-	private Peddel peddel;
-	//moet er later weer uit
-	private VergrotePedelPowerup vergrotePedelPowerup;
-	private StickyBalPowerup stickyBalPowerup;
-	
+	private Peddel peddel;	
 	private int worldWidth = 900;
 	private int worldHeight = 600;
 
@@ -38,14 +36,12 @@ public class BreakOut extends GameEngine {
      */
 	@Override
 	public void setupGame() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub        
+        initializeSound();
         
-        //initializeSound();
-        createDashboard(worldWidth, 100);        
         initializeTileMap();
-        //initializePersistence();
-
         createObjects();
+        createDashboard(worldWidth, 100);
         createViewWithoutViewport(worldWidth, worldHeight);
         //createViewWithViewport(worldWidth, worldHeight, 800, 800, 1.1f);
 		
@@ -58,10 +54,13 @@ public class BreakOut extends GameEngine {
      */ 
     private void createViewWithoutViewport(int screenWidth, int screenHeight) {
         View view = new View(screenWidth,screenHeight);
-        //view.setBackground(loadImage("src/main/java/breakout/media/Penguins.jpg"));
-
         setView(view);
         size(screenWidth, screenHeight);
+    }
+    
+    private void initializeSound() {
+        backgroundSound = new Sound(this, "src/main/java/breakout/media/jackrabbit.mp3");
+        backgroundSound.loop(-1);
     }
 	
     private void createObjects() {
@@ -76,29 +75,27 @@ public class BreakOut extends GameEngine {
     	System.out.println("peddel y = " + peddel.getY() + " y peddel + hoogte = " +  peddel.getHeight());
     	System.out.println("peddel x = " + peddel.getX() + " x peddel + breedte = " + (peddel.getX() + peddel.getBreedte()));
     	
-    	int kleur =0xFFCD5A4A;
-    	
+    	int kleur =0xFFCD5A4A;    	
     	tekenRodeStenen(15, kleur, 40, 100);
     	
     	kleur = 0xFFD79B1C;
-    	//tekenStenen(15, kleur, 40, 135);   	
+    	tekenStenen(15, kleur, 40, 135);   	
     	
     	kleur = 0xFF4146E9;
     	tekenStenen(15, kleur, 40, 170);   	
     	
     	kleur =  0xFFEDE84F;
-    	//tekenStenen(15, kleur, 40, 205);
+    	tekenStenen(15, kleur, 40, 205);
     	
     	kleur =  0xFFEDE84F;
-    	//tekenStenen(15, kleur, 40, 240);
+    	tekenStenen(15, kleur, 40, 240);
     	
 	}
     
     private void tekenStenen(int aantal, int kleur, float startX, float startY) {
     	
     	for(int i = 0; i < aantal; i++) {
-		
-			Steen s = new Steen(this, kleur, startX, startY);	
+			Steen s = new Steen(this, kleur, startX, startY);			
 			startX += 55;  
 			addGameObject(s);
     	}    	
@@ -107,8 +104,7 @@ public class BreakOut extends GameEngine {
     private void tekenRodeStenen(int aantal, int kleur, float startX, float startY) {
     	
     	for(int i = 0; i < aantal; i++) {
-		
-			RodeSteen s = new RodeSteen(this, kleur, startX, startY);	
+			Steen s = new RodeSteen(this, kleur, startX, startY);
 			startX += 55;  
 			addGameObject(s);
     	}    	
@@ -116,8 +112,8 @@ public class BreakOut extends GameEngine {
 
 	private void createDashboard(int dashboardWidth,int dashboardHeight) {
         Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
-        dashboardText=new TextObject("Pinguins enzo");
-        dashboard.addGameObject(dashboardText);
+        dashboardText=new TextObject("Player: " + peddel.getNaam() + " | Score = " + peddel.getScore());        
+        dashboard.addGameObject(dashboardText);                
         addDashboard(dashboard);
     }
 	
@@ -125,7 +121,6 @@ public class BreakOut extends GameEngine {
         /* TILES */
         Sprite muurSprite = new Sprite("src/main/java/nl/han/ica/waterworld/media/boards.jpg");
         TileType<BoardsTile> muurTileType = new TileType<>(BoardsTile.class, muurSprite);
-
         TileType[] tileTypes = { muurTileType };
         int tileSize=30;
         int tilesMap[][]={

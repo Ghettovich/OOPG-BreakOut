@@ -25,7 +25,7 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 	@Override
 	public void doePowerup(Bal b) {
 		wereld.deleteGameObject(this);
-		bal.setGoudenBal(this);
+		//bal.setGoudenBal(this);
 		
 	}
 
@@ -37,6 +37,12 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 
 	@Override
 	public void doePowerup() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void doePowerup(Bal bal, Peddel peddel) {
 		// TODO Auto-generated method stub
 		
 	}

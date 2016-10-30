@@ -102,33 +102,15 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		// TODO Auto-generated method stub
 		for(GameObject o : collidedGameObjects) {
 			
-			if(o instanceof Steen) {
-											
-				berekenBounceSteen(o.getAngleFrom(this));
-				Random r = new Random();
-				int rGetal = 1;
-								
-				if(rGetal == 1) {
-					StickyBalPowerup stickyBal = new StickyBalPowerup(breakout, this, peddel, o.getX(), o.getY());					
-					stickyBal.setAantalKeerVasthouden(3);
-					breakout.addGameObject(stickyBal);
-				}
-//				else if(rGetal == 2) {
-//					goudenBal = new GoudenBalPowerup(breakout, o.getX(), o.getY());					
-//					breakout.addGameObject(goudenBal);			
-//				}
-//				else if(rGetal == 3) {
-//					vergrotePeddel = new VergrotePedelPowerup(breakout, peddel, o.getX(), o.getY());
-//					breakout.addGameObject(vergrotePeddel);
-//				}
-				breakout.deleteGameObject(o);
+			if(o instanceof Steen) {											
+				berekenBounceSteen(o.getAngleFrom(this));				
 			}
 			if(o instanceof Peddel) {
 				
-				if(peddel.isStickyBalActief() && peddel.getStickyBallPowerup().powerUpActief()) {					
+				if(peddel.isStickyBalActief()) {	
+					stickyBal.setPeddel(peddel);
 					System.out.println("peddel geraakt, stickybal actief | aantalkeervast = " + peddel.getStickyBallPowerup().getAantalKeerVasthouden());
-					peddel.getStickyBallPowerup().usePowerUp();
-					
+					peddel.getStickyBallPowerup().usePowerUp();					
 					setY(getY()- 5);
 					setxSpeed(0);
 					setySpeed(0);
@@ -141,37 +123,25 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		}		
 	}
 	
-	@Override
-	public void keyPressed(int keyCode, char key){
-		
-		
-	}
-	
 	private void berekenBounceSteen(float objectAngle) {
 		
 		if(objectAngle >= 0 && objectAngle < 45) {
-			setySpeed(-3);		
-			//flipYSpeed();
+			setySpeed(-3);	
 		}
 		else if(objectAngle >= 45 && objectAngle < 135) {			
 			setxSpeed(3);			
-			//flipXSpeed();			
 		}
 		else if(objectAngle >=135 && objectAngle < 180) {
-			setySpeed(3);		
-			//flipYSpeed();
+			setySpeed(3);	
 		}
 		else if(objectAngle >= 180 && objectAngle < 225) {
 			setySpeed(3);
-			//flipYSpeed();
 		}
 		else if(objectAngle >= 225 && objectAngle < 270) {
 			setxSpeed(-3);	
-			//flipXSpeed();
 		}
 		else if(objectAngle >= 270 && objectAngle <= 360) {
-			setySpeed(-3);
-			//flipYSpeed();			
+			setySpeed(-3);		
 		}		
 	}
 	
@@ -198,31 +168,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 			}
 		}
 	}
-	
-	private void flipXSpeed() {
 		
-		System.out.println("x snelheid" + getxSpeed());		
-				
-		if(getxSpeed() < 0) {			
-			setxSpeed(getxSpeed() - (2 * getxSpeed()));			
-		}
-		else {
-			setxSpeed(getxSpeed() + (2 * getxSpeed()));
-		}		
-	}
-	
-	private void flipYSpeed() {
-		
-		System.out.println("y snelheid: " + getySpeed());
-		
-		if(getySpeed() < 0) {		
-			setySpeed(getySpeed() - 2 * getySpeed());			
-		}
-		else {
-			setySpeed(getySpeed() + 2 * getySpeed());		
-		}
-	}
-	
 	private float flipSpeed(float speed) {
 		
 		if(speed < 0) {
