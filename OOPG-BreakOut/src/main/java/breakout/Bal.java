@@ -23,9 +23,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	private float speed;	
 	protected int kleur;  	
 	private Peddel peddel;
-	private GoudenBalPowerup goudenBal;
 	private StickyBalPowerup stickyBal;
-	private VergrotePedelPowerup vergrotePeddel;
 		
 	public Bal(BreakOut breakout, Peddel peddel) {		
 		this.diameter = 30;		
@@ -38,10 +36,13 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		setHeight(diameter);
 	}
 	
+	public void setStickyBal(StickyBalPowerup stickyBal) {
+		this.stickyBal = stickyBal;
+	}
+
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		//setDirectionSpeed(direction, speed);		
+		// TODO Auto-generated method stub	
 		if(this.getY() >= breakout.getHeight()) {
 			System.out.println("DOOD");
 			breakout.deleteGameObject(this);
@@ -52,29 +53,6 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		return diameter;
 	}
 	
-	public GoudenBalPowerup getGoudenBal() {
-		return goudenBal;
-	}
-
-	public void setGoudenBal(GoudenBalPowerup goudenBal) {
-		this.goudenBal = goudenBal;
-	}
-
-	public StickyBalPowerup getStickyBal() {
-		return stickyBal;
-	}
-
-	public void setStickyBal(StickyBalPowerup stickyBal) {
-		this.stickyBal = stickyBal;
-	}
-
-	public VergrotePedelPowerup getVergrotePeddel() {
-		return vergrotePeddel;
-	}
-
-	public void setVergrotePeddel(VergrotePedelPowerup vergrotePeddel) {
-		this.vergrotePeddel = vergrotePeddel;
-	}
 
 	@Override
 	public void draw(PGraphics g) {
@@ -178,7 +156,4 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 			return speed + (2 * speed);
 		}		
 	}
-	
-	
-
 }

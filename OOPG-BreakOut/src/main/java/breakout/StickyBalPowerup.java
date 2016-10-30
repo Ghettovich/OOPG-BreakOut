@@ -35,26 +35,12 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 	public void setPeddel(Peddel peddel) {
 		this.peddel = peddel;
 	}
-
-	public boolean powerUpActief() {
-		if(aantalKeerVasthouden > 0) {
-			return true;
-		}
-		else {
-			return false;
-		}
-	}
 	
 	public void usePowerUp() {
 		aantalKeerVasthouden--;
-		
 	}
 	
-	@Override
-	public void doePowerup(Bal b) {
 
-		
-	}
 
 	@Override
 	public void update() {
@@ -69,6 +55,12 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public void doePowerup(Bal b) {
+
+		
+	}
 
 	@Override
 	public void doePowerup(Bal bal, Peddel peddel) {
@@ -81,5 +73,6 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 		System.out.println("sticky bal opgepakt door de peddel");
 		wereld.deleteGameObject(this);
 	}
+
 
 }

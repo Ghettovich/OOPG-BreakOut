@@ -40,11 +40,6 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		return stickyBalActief;
 	}
 
-	public void setStickyBalActief(boolean stickyBalActief) {
-		stickyBalActief = true;
-		this.stickyBalActief = stickyBalActief;
-	}
-	
 	public void setBal(Bal bal) {
 		this.bal = bal;		
 	}
@@ -165,6 +160,8 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 			return false;
 		}		
 	}
+	
+	
 	
 	///getters en setters
 	public int getScore() {
