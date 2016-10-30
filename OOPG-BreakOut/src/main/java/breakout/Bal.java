@@ -77,8 +77,10 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		PVector vector;
 		for(CollidedTile tile : collidedTiles) {
 			vector = breakout.getTileMap().getTilePixelLocation(tile.theTile);
-			berekenBounceTile(this.getAngleFrom(((int)vector.x), ((int)vector.y)), tile);		
-			//System.out.println("tile collision angle:" + this.getAngleFrom(((int)vector.x), ((int)vector.y)));
+			berekenBounceTile(this.getAngleFrom(((int)vector.x), ((int)vector.y)), tile);	
+			System.out.println("heading = " + vector.heading());
+			System.out.println("magnitude = " + vector.mag());
+			System.out.println("tile collision angle:" + this.getAngleFrom(((int)vector.x), ((int)vector.y)));
 			//System.out.println("bereken bal direction vanaf tile: " +this.calculateDirection(vector.x, vector.y));
 		}		
 	}
@@ -91,9 +93,14 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 			if(o instanceof Steen) {											
 				berekenBounceSteen(o.getAngleFrom(this));				
 			}
-			if(o instanceof Peddel) {				
+			if(o instanceof Peddel) {
+				
+//				if(getSpeed() == 0) {
+//					setX(getCenterX() - getDiameter() / 2);
+//				}
+				
 				if(peddel.getStickyBalActief()) {	
-					stickyBal.setPeddel(peddel);					
+					stickyBal.setPeddel(peddel);
 					System.out.println("peddel geraakt, stickybal actief | aantalkeervast = " + peddel.getStickyBallPowerup().getAantalKeerVasthouden());
 				}
 				else
@@ -136,7 +143,8 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 				setxSpeed(3);
 			}
 		}
-		else if(tile.collisionSide == tile.BOTTOM) {				
+		else if(tile.collisionSide == tile.BOTTOM) {
+			
 			setySpeed(3);				
 		}
 		else if(tile.collisionSide == tile.RIGHT) {

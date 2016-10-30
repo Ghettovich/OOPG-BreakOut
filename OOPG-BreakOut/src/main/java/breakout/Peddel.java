@@ -116,14 +116,20 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 			setX(getX()- 50);
 			tijd = 0;
 		}	
-		if(balOpPeddel()) {						
+		if(balOpPeddel()) {	
 			
+			bal.setX(getCenterX());
 			if(getStickyBalActief()) {
 				bal.setxSpeed(0);
-				bal.setySpeed(0);
-			}		
-			bal.setX(getCenterX() - bal.getDiameter() / 2);
-			bal.setY(getY() - bal.getDiameter());	
+				bal.setySpeed(0);	
+				
+			}
+//			else {
+//				//bal.setX(getCenterX() - (bal.getDiameter() / 2));
+//			}
+			//bal.setX(getPrevX());// / 2);
+			//bal.setX(getCenterX() - bal.getDiameter() / 2);
+			//bal.setY(getY() - bal.getDiameter());	
 			System.out.println("bal op peddel | bal y + dia = " + (bal.getY() + bal.getDiameter()) + " | peddel y =  " + getY());
 		}
 	}
@@ -149,11 +155,10 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
     			System.out.println("speed = 0 set speed" );
     			bal.setY(bal.getY() - 5);
 				bal.setySpeed(-3);
+				//bal.setxSpeed(-1);
 				if(stickyBalActief) {
 					stickyBal.usePowerUp();
 				}
-				
-				//bal.setxSpeed(-1);
 			}	
 		}
 	}	
@@ -167,7 +172,6 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 			return false;
 		}		
 	}
-	
 	
 	
 	///getters en setters
