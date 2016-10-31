@@ -117,7 +117,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 				}
 				else
 				{
-					setySpeed(-3);
+					berekenBounceSteen(o.getAngleFrom(this));	
 				}				
 			}
 		}		
@@ -148,12 +148,13 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	private void berekenBounceTile(float objectAngle, CollidedTile tile) {
 		if(tile.collisionSide == tile.LEFT){			
 			
-			if(objectAngle >= 0 && objectAngle <= 90) {
-				setxSpeed(-3);
-			}	
-			else if(objectAngle >= 90 && objectAngle <= 180) {
-				setxSpeed(3);
-			}
+//			if(objectAngle >= 0 && objectAngle <= 90) {
+//				setxSpeed(-3);
+//			}	
+//			else if(objectAngle >= 90 && objectAngle <= 180) {
+//				setxSpeed(-3);
+//			}
+			setxSpeed(-3);
 		}
 		else if(tile.collisionSide == tile.BOTTOM) {
 			
@@ -161,14 +162,16 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		}
 		else if(tile.collisionSide == tile.RIGHT) {
 			
-			if(objectAngle >= 180 && objectAngle <= 270) {
-				setxSpeed(-3);
-			}	
-			else if(objectAngle >= 270 && objectAngle <= 360) {
-				setxSpeed(3);
+//			if(objectAngle >= 180 && objectAngle <= 270) {
+//				setxSpeed(3);
+//			}	
+//			else if(objectAngle >= 270 && objectAngle <= 360) {
+//				setxSpeed(3);
+//			}
+			setxSpeed(3);
 			}
 		}
-	}
+	
 		
 	private float flipSpeed(float speed) {
 		

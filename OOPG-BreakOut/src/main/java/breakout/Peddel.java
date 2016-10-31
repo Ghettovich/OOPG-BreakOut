@@ -144,6 +144,9 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
     			bal.setY(bal.getY() - 5);
 				bal.setySpeed(-3);
 				bal.setxSpeed(-1);
+				if(getStickyBalActief()){
+					stickyBal.usePowerUp();
+				}
 			}	
 		}
 	}	

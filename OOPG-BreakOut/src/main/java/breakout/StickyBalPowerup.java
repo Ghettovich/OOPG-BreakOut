@@ -38,7 +38,7 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 	
 	public void usePowerUp() {
 		aantalKeerVasthouden--;
-		if(aantalKeerVasthouden < 0) {
+		if(aantalKeerVasthouden < 1) {
 			peddel.setStickyBalActief(false);			
 		}
 	}
