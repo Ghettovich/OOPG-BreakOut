@@ -35,12 +35,15 @@ public class BreakOut extends GameEngine {
      */
 	@Override
 	public void setupGame() {        
-        initializeSound();
+        
 		initializeTileMap();
 	    createObjects();
 	    createDashboard(worldWidth, 100);
 	    if(huidigeScherm==0){
 	    	maakBeginScherm(worldWidth,worldHeight);
+	    }
+	    else {
+	    	initializeSound();
 	    }
         createViewWithoutViewport(worldWidth, worldHeight);
 	}
