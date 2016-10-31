@@ -1,9 +1,6 @@
 package breakout;
 
-import java.util.List;
-
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
-import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 
 public class RodeSteen extends Steen implements ICollidableWithGameObjects {
 	

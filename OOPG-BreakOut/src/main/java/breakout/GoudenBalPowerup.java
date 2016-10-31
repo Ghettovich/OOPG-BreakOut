@@ -1,15 +1,12 @@
 package breakout;
 
-import com.sun.glass.ui.Timer;
-
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 public class GoudenBalPowerup extends SpriteObject implements IPowerup{
-	// Zijn ze private?
-	BreakOut wereld;
-	Bal bal;
-	int breedte, hoogte, duratie;
+	
+	private BreakOut wereld;
+	private Bal bal;
 	private int tijd;
 	
 	public GoudenBalPowerup(BreakOut wereld, Bal bal, float x, float y) {
@@ -26,11 +23,6 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 
 	public void setTijd(int tijd) {
 		this.tijd = tijd;
-	}
-
-	@Override
-	public void doePowerup(Bal b) {
-	
 	}
 
 	@Override

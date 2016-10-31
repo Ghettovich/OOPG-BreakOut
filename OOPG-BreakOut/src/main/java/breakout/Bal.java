@@ -21,14 +21,12 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	
 	private BreakOut breakout;
 	private int diameter;
-	private float speed;
 	private Peddel peddel;
 	private GoudenBalPowerup goudenBal;
 	private StickyBalPowerup stickyBal;
 		
 	public Bal(BreakOut breakout, Peddel peddel) {		
-		this.diameter = 30;		
-		this.speed = 2;
+		this.diameter = 30;	
 		this.breakout = breakout;
 		this.peddel = peddel;
 		this.kleur = 0xFFFFFFFF; 

@@ -69,9 +69,6 @@ public class BreakOut extends GameEngine {
     	addGameObject(bal);
     	peddel.setBal(bal);
     	
-    	System.out.println("peddel y = " + peddel.getY() + " y peddel + hoogte = " +  peddel.getHeight());
-    	System.out.println("peddel x = " + peddel.getX() + " x peddel + breedte = " + (peddel.getX() + peddel.getBreedte()));
-    	
     	int kleur =0xFFCD5A4A;    	
     	tekenRodeStenen(peddel, 15, kleur, 40, 100);
     	

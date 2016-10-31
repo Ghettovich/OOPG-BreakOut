@@ -46,14 +46,7 @@ public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 	}
 
 	@Override
-	public void doePowerup(Bal bal) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void doePowerup(Bal bal, Peddel peddel) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 }
