@@ -13,10 +13,10 @@ import processing.core.PVector;
 public class Peddel extends GameObject implements ICollidableWithTiles, ICollidableWithGameObjects, IKeyInput {
 	
 	private BreakOut wereld;	
-	private Bal bal;
+	private Bal bal; 
 	private StickyBalPowerup stickyBal;
-	protected String naam;
-	protected int score, levens, hoogte, breedte;
+	private String naam;
+	private int score, levens, hoogte, breedte;
 	private int tijd;
 	private boolean stickyBalActief;
 
