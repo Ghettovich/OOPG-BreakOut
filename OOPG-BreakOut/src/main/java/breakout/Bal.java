@@ -109,19 +109,10 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 				peddel.setScore(peddel.getScore() + 1);
 				//if(goudenBal.)
 				if(getGoudenBal() == null) {
-					
-										
-					//goudenBal.getTijd() == 0) {
 					berekenBounceSteen(o.getAngleFrom(this));	
-				}
-							
+				}							
 			}
 			if(o instanceof Peddel) {
-				
-//				if(getSpeed() == 0) {
-//					setX(getCenterX() - getDiameter() / 2);
-//				}
-				
 				if(peddel.getStickyBalActief()) {	
 					stickyBal.setPeddel(peddel);
 					System.out.println("peddel geraakt, stickybal actief | aantalkeervast = " + peddel.getStickyBallPowerup().getAantalKeerVasthouden());
