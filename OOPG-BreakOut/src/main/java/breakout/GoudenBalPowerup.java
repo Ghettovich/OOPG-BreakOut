@@ -6,6 +6,7 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 public class GoudenBalPowerup extends SpriteObject implements IPowerup{
+	// Zijn ze private?
 	BreakOut wereld;
 	Bal bal;
 	int breedte, hoogte, duratie;
