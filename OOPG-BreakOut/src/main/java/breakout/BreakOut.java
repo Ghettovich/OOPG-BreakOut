@@ -73,33 +73,33 @@ public class BreakOut extends GameEngine {
     	System.out.println("peddel x = " + peddel.getX() + " x peddel + breedte = " + (peddel.getX() + peddel.getBreedte()));
     	
     	int kleur =0xFFCD5A4A;    	
-    	tekenRodeStenen(15, kleur, 40, 100);
+    	tekenRodeStenen(peddel, 15, kleur, 40, 100);
     	
     	kleur = 0xFFD79B1C;
-    	tekenStenen(15, kleur, 40, 135);   	
+    	tekenStenen(peddel, 15, kleur, 40, 135);   	
     	
     	kleur = 0xFF4146E9;
-    	tekenStenen(15, kleur, 40, 170);   	
+    	tekenStenen(peddel, 15, kleur, 40, 170);   	
     	
     	kleur =  0xFFEDE84F;
-    	tekenStenen(15, kleur, 40, 205);
+    	tekenStenen(peddel, 15, kleur, 40, 205);
     	
     	kleur =  0xFFEDE84F;
-    	tekenStenen(15, kleur, 40, 240);
+    	tekenStenen(peddel, 15, kleur, 40, 240);
     	
 	}
     
-    private void tekenStenen(int aantal, int kleur, float startX, float startY) {
+    private void tekenStenen(Peddel peddel, int aantal, int kleur, float startX, float startY) {
     	for(int i = 0; i < aantal; i++) {
-			Steen s = new Steen(this, kleur, startX, startY);			
+			Steen s = new Steen(peddel, this, kleur, startX, startY);			
 			startX += 55;  
 			addGameObject(s);
     	}    	
     }   
     
-    private void tekenRodeStenen(int aantal, int kleur, float startX, float startY) {
+    private void tekenRodeStenen(Peddel peddel,int aantal, int kleur, float startX, float startY) {
     	for(int i = 0; i < aantal; i++) {
-			Steen s = new RodeSteen(this, kleur, startX, startY);
+			Steen s = new RodeSteen(peddel, this, kleur, startX, startY);
 			startX += 55;  
 			addGameObject(s);
     	}    	

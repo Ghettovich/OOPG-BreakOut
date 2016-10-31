@@ -29,11 +29,7 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 
 	@Override
 	public void doePowerup(Bal b) {
-		
-		System.out.println("gouden bal opgepakt");
-		bal.setGoudenBal(this);	
-		bal.setKleur(125);
-		wereld.deleteGameObject(this);
+	
 	}
 
 	@Override
@@ -49,7 +45,11 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 
 	@Override
 	public void doePowerup() {
-		// TODO Auto-generated method stub
+		
+		System.out.println("gouden bal opgepakt");
+		bal.setGoudenBal(this);	
+		bal.setKleur(125);
+		wereld.deleteGameObject(this);
 
 	}
 

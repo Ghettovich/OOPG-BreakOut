@@ -7,9 +7,9 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 
 public class RodeSteen extends Steen implements ICollidableWithGameObjects {
 	
-	public RodeSteen(BreakOut breakout, int kleur, float x, float y) {
+	public RodeSteen(Peddel peddel, BreakOut breakout, int kleur, float x, float y) {
 		// TODO Auto-generated constructor stub
-		super(breakout, kleur, x, y);
+		super(peddel, breakout, kleur, x, y);
 		levens = 2;		
 		setY(y);
 		setX(x);

@@ -12,14 +12,16 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	protected int breedte, hoogte, kleur;
 	protected int levens;	
 	private BreakOut breakout;
+	protected Peddel peddel;
 
-	public Steen(BreakOut breakout, int kleur, float x, float y) {
+	public Steen(Peddel peddel, BreakOut breakout, int kleur, float x, float y) {
 		// TODO Auto-generated constructor stub
 		this.breedte = 50;
 		this.hoogte = 30;
 		this.kleur = kleur;
 		this.breakout = breakout;		
 		this.levens = 1;
+		this.peddel = peddel;
 		setY(y);
 		setX(x);
 		setWidth(breedte);
@@ -67,7 +69,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	
 	public void spawnRandomPowerUp(Bal bal) {
 		Random r = new Random();
-		int rGetal = 2;// r.nextInt(15);
+		int rGetal = 3;// r.nextInt(15);
 		
 		if(rGetal == 1) {
 			StickyBalPowerup stickyBal = new StickyBalPowerup(breakout, bal, getX(), getY());					
@@ -79,7 +81,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 			breakout.addGameObject(goudenBal);			
 		}
 		else if(rGetal == 3) {
-			VergrotePedelPowerup vergrotePeddel = new VergrotePedelPowerup(breakout, getX(), getY());
+			VergrotePedelPowerup vergrotePeddel = new VergrotePedelPowerup(peddel, breakout, getX(), getY());
 			breakout.addGameObject(vergrotePeddel);
 		}
 	}

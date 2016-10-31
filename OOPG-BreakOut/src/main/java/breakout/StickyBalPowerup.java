@@ -57,8 +57,7 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 
 	@Override
 	public void doePowerup() {
-		// TODO Auto-generated method stub
-		
+
 	}
 	
 	@Override

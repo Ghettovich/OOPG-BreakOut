@@ -70,7 +70,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		}
 		if(goudenBal != null) {
 			goudenBal.setTijd(goudenBal.getTijd() + 1);
-			if(goudenBal.getTijd() >= 60) {
+			if(goudenBal.getTijd() >= 180) {
 				setKleur(0xFFFFFFFF);
 				setGoudenBal(null);
 			}

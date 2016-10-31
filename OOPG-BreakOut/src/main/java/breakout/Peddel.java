@@ -27,7 +27,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		this.breedte = breedte;
 		this.stickyBalActief = false;
 		score = 0;
-		levens = 1;
+		levens = 3;
 		setX(wereld.getTileMap().getMapWidth()/2-breedte/2);
 		setY(wereld.getTileMap().getMapHeight()-50);
         setFriction(0.1f);
@@ -78,12 +78,15 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 				if(collide instanceof StickyBalPowerup) {					
 					((StickyBalPowerup) collide).doePowerup(bal, this);
 				}
-				else if(collide instanceof GoudenBalPowerup) {					
-					((GoudenBalPowerup) collide).doePowerup(bal);					
-				}
-				else if(collide instanceof VergrotePedelPowerup) { 
-					((VergrotePedelPowerup) collide).setPeddel(this);
-					((VergrotePedelPowerup) collide).doePowerup();
+//				else if(collide instanceof GoudenBalPowerup) {					
+//					((GoudenBalPowerup) collide).doePowerup(bal);					
+//				}
+//				else if(collide instanceof VergrotePedelPowerup) { 
+//					((VergrotePedelPowerup) collide).setPeddel(this);
+//					((VergrotePedelPowerup) collide).doePowerup();
+//				}
+				else{
+					((IPowerup)collide).doePowerup();
 				}
 			}
 		}
@@ -156,9 +159,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
     			bal.setY(bal.getY() - 5);
 				bal.setySpeed(-3);
 				bal.setxSpeed(-1);
-				if(stickyBalActief) {
-					stickyBal.usePowerUp();
-				}
+				
 			}	
 		}
 	}	
