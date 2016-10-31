@@ -67,7 +67,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	
 	public void spawnRandomPowerUp(Bal bal) {
 		Random r = new Random();
-		int rGetal = 1;// r.nextInt(15);
+		int rGetal = 2;// r.nextInt(15);
 		
 		if(rGetal == 1) {
 			StickyBalPowerup stickyBal = new StickyBalPowerup(breakout, bal, getX(), getY());					
@@ -75,7 +75,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 			breakout.addGameObject(stickyBal);
 		}
 		else if(rGetal == 2) {
-			GoudenBalPowerup goudenBal = new GoudenBalPowerup(breakout, getX(), getY());					
+			GoudenBalPowerup goudenBal = new GoudenBalPowerup(breakout, bal, bal.getX(), bal.getY());					
 			breakout.addGameObject(goudenBal);			
 		}
 		else if(rGetal == 3) {

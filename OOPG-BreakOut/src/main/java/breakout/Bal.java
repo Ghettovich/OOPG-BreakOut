@@ -17,12 +17,13 @@ import processing.core.PGraphics;
 import processing.core.PVector;
 
 public class Bal extends GameObject implements ICollidableWithTiles, ICollidableWithGameObjects, IKeyInput {
-
+	protected int kleur;  
+	
 	private BreakOut breakout;
 	private int diameter;
-	private float speed;	
-	protected int kleur;  	
+	private float speed;
 	private Peddel peddel;
+	private GoudenBalPowerup goudenBal;
 	private StickyBalPowerup stickyBal;
 		
 	public Bal(BreakOut breakout, Peddel peddel) {		
@@ -30,10 +31,23 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		this.speed = 2;
 		this.breakout = breakout;
 		this.peddel = peddel;
+		this.kleur = 0xFFFFFFFF; 
 		setY(peddel.getY() - diameter);
 		setX(peddel.getX() + diameter);		
 		setWidth(diameter);
 		setHeight(diameter);
+	}
+	
+	public void setKleur(int kleur) {
+		this.kleur = kleur;
+	}
+
+	public GoudenBalPowerup getGoudenBal() {
+		return goudenBal;
+	}
+
+	public void setGoudenBal(GoudenBalPowerup goudenBal) {
+		this.goudenBal = goudenBal;
 	}
 	
 	public void setStickyBal(StickyBalPowerup stickyBal) {
@@ -43,8 +57,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub	
-		if(this.getY() >= breakout.getHeight()) {
-			
+		if(this.getY() >= breakout.getHeight()) {			
 			if(peddel.getLevens() < 1) {
 				System.out.println("DOOD");
 			}
@@ -54,20 +67,25 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 				setSpeed(0);
 			}
 		}
-		
+		if(goudenBal != null) {
+			goudenBal.setTijd(goudenBal.getTijd() + 1);
+			if(goudenBal.getTijd() >= 60) {
+				setKleur(0xFFFFFFFF);
+				setGoudenBal(null);
+			}
+		}
 	}
 	
 	public int getDiameter() {
 		return diameter;
 	}
 	
-
 	@Override
 	public void draw(PGraphics g) {
 		// TODO Auto-generated method stub
         g.ellipseMode(g.CORNER); 
-        g.stroke(0, 50, 200, 100);
-        g.fill(0, 50, 200, 255);
+        //g.stroke(0, 50, 200, 100);
+        g.fill(kleur);
         g.ellipse(getX(), getY(), diameter, diameter);				
 	}
 	
@@ -77,11 +95,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		PVector vector;
 		for(CollidedTile tile : collidedTiles) {
 			vector = breakout.getTileMap().getTilePixelLocation(tile.theTile);
-			berekenBounceTile(this.getAngleFrom(((int)vector.x), ((int)vector.y)), tile);	
-			System.out.println("heading = " + vector.heading());
-			System.out.println("magnitude = " + vector.mag());
-			System.out.println("tile collision angle:" + this.getAngleFrom(((int)vector.x), ((int)vector.y)));
-			//System.out.println("bereken bal direction vanaf tile: " +this.calculateDirection(vector.x, vector.y));
+			berekenBounceTile(this.getAngleFrom(((int)vector.x), ((int)vector.y)), tile);			
 		}		
 	}
 
@@ -90,8 +104,16 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		// TODO Auto-generated method stub
 		for(GameObject o : collidedGameObjects) {
 			
-			if(o instanceof Steen) {											
-				berekenBounceSteen(o.getAngleFrom(this));				
+			if(o instanceof Steen) {						
+				peddel.setScore(peddel.getScore() + 1);
+				//if(goudenBal.)
+				if(getGoudenBal() == null) {
+					
+										
+					//goudenBal.getTijd() == 0) {
+					berekenBounceSteen(o.getAngleFrom(this));	
+				}
+							
 			}
 			if(o instanceof Peddel) {
 				

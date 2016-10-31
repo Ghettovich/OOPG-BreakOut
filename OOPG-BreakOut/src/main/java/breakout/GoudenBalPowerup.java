@@ -9,12 +9,13 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 	BreakOut wereld;
 	Bal bal;
 	int breedte, hoogte, duratie;
+	private int tijd;
 	
-	
-
-	public GoudenBalPowerup(BreakOut wereld, float x, float y) {
+	public GoudenBalPowerup(BreakOut wereld, Bal bal, float x, float y) {
 		super(new Sprite("src/main/java/breakout/media/GoudenBalPowerup.jpg"));
 		this.wereld = wereld;
+		this.bal = bal;
+		this.tijd = 0;
 		setX(x);
 		setY(y);
 		setySpeed(1.2f);
@@ -22,23 +23,34 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup{
 		setWidth(50);
 	}
 
+	public void setTijd(int tijd) {
+		this.tijd = tijd;
+	}
+
 	@Override
 	public void doePowerup(Bal b) {
-		wereld.deleteGameObject(this);
-		//bal.setGoudenBal(this);
 		
+		System.out.println("gouden bal opgepakt");
+		bal.setGoudenBal(this);	
+		bal.setKleur(125);
+		wereld.deleteGameObject(this);
 	}
 
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
 
+
+	}
+
+	public int getTijd() {
+		return tijd;
 	}
 
 	@Override
 	public void doePowerup() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override

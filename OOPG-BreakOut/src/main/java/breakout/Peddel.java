@@ -78,8 +78,8 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 				if(collide instanceof StickyBalPowerup) {					
 					((StickyBalPowerup) collide).doePowerup(bal, this);
 				}
-				else if(collide instanceof GoudenBalPowerup) {
-					((GoudenBalPowerup) collide).doePowerup(bal);
+				else if(collide instanceof GoudenBalPowerup) {					
+					((GoudenBalPowerup) collide).doePowerup(bal);					
 				}
 				else if(collide instanceof VergrotePedelPowerup) { 
 					((VergrotePedelPowerup) collide).setPeddel(this);
@@ -155,7 +155,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
     			System.out.println("speed = 0 set speed" );
     			bal.setY(bal.getY() - 5);
 				bal.setySpeed(-3);
-				//bal.setxSpeed(-1);
+				bal.setxSpeed(-1);
 				if(stickyBalActief) {
 					stickyBal.usePowerUp();
 				}
