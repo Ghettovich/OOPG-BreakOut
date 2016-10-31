@@ -1,5 +1,6 @@
 package breakout;
 
+import breakout.tile.MurenTile;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
@@ -10,20 +11,18 @@ import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileMap;
 import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
 import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
-import nl.han.ica.waterworld.TextObject;
-import nl.han.ica.waterworld.tiles.BoardsTile;
 import processing.core.PApplet;
 
 
 public class BreakOut extends GameEngine {
 	
 	private Sound backgroundSound;
-	private TextObject dashboardText;
-	private TextObject eindSchermTekst;
+	private TextObject eindSchermTekst, beginSchermTekst, dashboardText, uitleg,startTekst;
 	private Bal bal;
 	private Peddel peddel;	
 	private int worldWidth = 900;
 	private int worldHeight = 600;
+	private int huidigeScherm = 0;
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -37,9 +36,12 @@ public class BreakOut extends GameEngine {
 	@Override
 	public void setupGame() {        
         initializeSound();
-        initializeTileMap();
-        createObjects();
-        createDashboard(worldWidth, 100);
+		initializeTileMap();
+	    createObjects();
+	    createDashboard(worldWidth, 100);
+	    if(huidigeScherm==0){
+	    	maakBeginScherm(worldWidth,worldHeight);
+	    }
         createViewWithoutViewport(worldWidth, worldHeight);
 	}
  
@@ -60,7 +62,7 @@ public class BreakOut extends GameEngine {
     }
 	
     private void createObjects() {
-    	peddel = new Peddel(this,"Bram", 20,100);
+    	peddel = new Peddel(this,"Speler", 20,100);
     	this.addGameObject(peddel);
     	    	
     	bal = new Bal(this, peddel);    
@@ -103,26 +105,43 @@ public class BreakOut extends GameEngine {
     	}    	
     } 
     
-    private void maakEindScherm(int breedte, int hoogte){
-    	Dashboard eindScherm = new Dashboard(175,125,breedte,hoogte);
+    private void maakBeginScherm(int breedte, int hoogte){
+    	Dashboard beginScherm = new Dashboard(175,10,breedte, hoogte);
+    	Dashboard uitlegInScherm = new Dashboard(20,125,breedte, hoogte);
+    	Dashboard startTekstScherm = new Dashboard(130,135,breedte, hoogte);
+    	beginSchermTekst = new TextObject("BreakOut",50);
+    	uitleg = new TextObject("Pijltjes naar links en rechts zijn voor het bewegen van de peddel. Pijljte omhoog is om de bal af te vuren",16);
+    	startTekst = new TextObject("Klik op het scherm om het spel te starten",20);
     	this.deleteAllDashboards();
     	this.deleteAllGameOBjects();
-    	eindSchermTekst= new TextObject(peddel.getNaam() + ": " + peddel.getScore());
-    	eindScherm.addGameObject(eindSchermTekst);
-    	addDashboard(eindScherm);
+    	beginScherm.addGameObject(beginSchermTekst);
+    	uitlegInScherm.addGameObject(uitleg);
+    	startTekstScherm.addGameObject(startTekst);
+    	addDashboard(beginScherm);
+    	addDashboard(uitlegInScherm);
+    	addDashboard(startTekstScherm);
     }
 
 	private void createDashboard(int dashboardWidth,int dashboardHeight) {
         Dashboard dashboard = new Dashboard(15,10, dashboardWidth, dashboardHeight);
-        dashboardText=new TextObject("Player: " + peddel.getNaam() + " | Score = " + peddel.getScore());        
+        dashboardText=new TextObject("Player: " + peddel.getNaam() + " | Score = " + peddel.getScore(),50);   
         dashboard.addGameObject(dashboardText);                
         addDashboard(dashboard);
+    }
+	
+    private void maakEindScherm(int breedte, int hoogte){
+    	Dashboard eindScherm = new Dashboard(175,125,breedte,hoogte);
+    	eindSchermTekst= new TextObject(peddel.getNaam() + ": " + peddel.getScore(),50);
+    	this.deleteAllDashboards();
+    	this.deleteAllGameOBjects();
+    	eindScherm.addGameObject(eindSchermTekst);
+    	addDashboard(eindScherm);
     }
 	
     private void initializeTileMap() {
         /* TILES */
         Sprite muurSprite = new Sprite("src/main/java/nl/han/ica/waterworld/media/boards.jpg");
-        TileType<BoardsTile> muurTileType = new TileType<>(BoardsTile.class, muurSprite);
+        TileType<MurenTile> muurTileType = new TileType<>(MurenTile.class, muurSprite);
         TileType[] tileTypes = { muurTileType };
         int tileSize=30;
         int tilesMap[][]={
@@ -156,5 +175,12 @@ public class BreakOut extends GameEngine {
 			maakEindScherm(worldWidth,worldHeight);
 		}
 	}
-
+	public void mousePressed(){
+		if(huidigeScherm == 0){
+			huidigeScherm = 1;
+			this.deleteAllDashboards();
+ 		    this.deleteAllGameOBjects();
+ 		    setupGame();
+		}
+	}
 }
