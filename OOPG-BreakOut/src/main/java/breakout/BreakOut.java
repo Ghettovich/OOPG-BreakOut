@@ -18,8 +18,8 @@ import processing.core.PApplet;
 public class BreakOut extends GameEngine {
 	
 	private Sound backgroundSound;
-    private Sound bubblePopSound;
 	private TextObject dashboardText;
+	private TextObject eindSchermTekst;
 	private Bal bal;
 	private Peddel peddel;	
 	private int worldWidth = 900;
@@ -35,16 +35,12 @@ public class BreakOut extends GameEngine {
      * noodzakelijke zaken geïnitialiseerd
      */
 	@Override
-	public void setupGame() {
-		// TODO Auto-generated method stub        
+	public void setupGame() {        
         initializeSound();
-        
         initializeTileMap();
         createObjects();
         createDashboard(worldWidth, 100);
         createViewWithoutViewport(worldWidth, worldHeight);
-        //createViewWithViewport(worldWidth, worldHeight, 800, 800, 1.1f);
-		
 	}
  
     /**
@@ -64,7 +60,6 @@ public class BreakOut extends GameEngine {
     }
 	
     private void createObjects() {
-		// TODO Auto-generated method stub 
     	peddel = new Peddel(this,"Bram", 20,100);
     	this.addGameObject(peddel);
     	    	
@@ -93,7 +88,6 @@ public class BreakOut extends GameEngine {
 	}
     
     private void tekenStenen(int aantal, int kleur, float startX, float startY) {
-    	
     	for(int i = 0; i < aantal; i++) {
 			Steen s = new Steen(this, kleur, startX, startY);			
 			startX += 55;  
@@ -102,16 +96,24 @@ public class BreakOut extends GameEngine {
     }   
     
     private void tekenRodeStenen(int aantal, int kleur, float startX, float startY) {
-    	
     	for(int i = 0; i < aantal; i++) {
 			Steen s = new RodeSteen(this, kleur, startX, startY);
 			startX += 55;  
 			addGameObject(s);
     	}    	
     } 
+    
+    private void maakEindScherm(int breedte, int hoogte){
+    	Dashboard eindScherm = new Dashboard(175,125,breedte,hoogte);
+    	this.deleteAllDashboards();
+    	this.deleteAllGameOBjects();
+    	eindSchermTekst= new TextObject(peddel.getNaam() + ": " + peddel.getScore());
+    	eindScherm.addGameObject(eindSchermTekst);
+    	addDashboard(eindScherm);
+    }
 
 	private void createDashboard(int dashboardWidth,int dashboardHeight) {
-        Dashboard dashboard = new Dashboard(0,0, dashboardWidth, dashboardHeight);
+        Dashboard dashboard = new Dashboard(15,10, dashboardWidth, dashboardHeight);
         dashboardText=new TextObject("Player: " + peddel.getNaam() + " | Score = " + peddel.getScore());        
         dashboard.addGameObject(dashboardText);                
         addDashboard(dashboard);
@@ -150,8 +152,9 @@ public class BreakOut extends GameEngine {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		if(peddel.getLevens() <1){
+			maakEindScherm(worldWidth,worldHeight);
+		}
 	}
 
 }

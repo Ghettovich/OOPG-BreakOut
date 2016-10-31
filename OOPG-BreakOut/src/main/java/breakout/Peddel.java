@@ -27,7 +27,7 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		this.breedte = breedte;
 		this.stickyBalActief = false;
 		score = 0;
-		levens = 3;
+		levens = 1;
 		setX(wereld.getTileMap().getMapWidth()/2-breedte/2);
 		setY(wereld.getTileMap().getMapHeight()-50);
         setFriction(0.1f);

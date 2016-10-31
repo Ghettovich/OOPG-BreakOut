@@ -52,6 +52,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 				setY(peddel.getY() - diameter);
 				setX(peddel.getX() + diameter);	
 				setSpeed(0);
+				peddel.levenMinder();
 			}
 		}
 		
