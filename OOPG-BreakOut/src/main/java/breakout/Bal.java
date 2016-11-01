@@ -130,7 +130,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 			setySpeed(-3);	
 		}
 		else if(objectAngle >= 45 && objectAngle < 135) {			
-			setxSpeed(3);			
+			setxSpeed(3);
 		}
 		else if(objectAngle >=135 && objectAngle < 180) {
 			setySpeed(3);	
@@ -139,7 +139,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 			setySpeed(3);
 		}
 		else if(objectAngle >= 225 && objectAngle < 270) {
-			setxSpeed(-3);	
+			setxSpeed(-3);
 		}
 		else if(objectAngle >= 270 && objectAngle <= 360) {
 			setySpeed(-3);		

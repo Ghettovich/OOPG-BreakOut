@@ -77,16 +77,16 @@ public class BreakOut extends GameEngine {
     	tekenRodeStenen(peddel, 15, kleur, 40, 100);
     	
     	kleur = 0xFFD79B1C;
-    	tekenStenen(peddel, 15, kleur, 40, 135);   	
+    	//tekenStenen(peddel, 15, kleur, 40, 135);   	
     	
     	kleur = 0xFF4146E9;
-    	tekenStenen(peddel, 15, kleur, 40, 170);   	
+    	//tekenStenen(peddel, 15, kleur, 40, 170);   	
     	
     	kleur =  0xFFEDE84F;
-    	tekenStenen(peddel, 15, kleur, 40, 205);
+    	//tekenStenen(peddel, 15, kleur, 40, 205);
     	
     	kleur =  0xFFEDE84F;
-    	tekenStenen(peddel, 15, kleur, 40, 240);
+    	//tekenStenen(peddel, 15, kleur, 40, 240);
     	
 	}
     
