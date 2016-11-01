@@ -172,7 +172,7 @@ public class BreakOut extends GameEngine {
 
 	@Override
 	public void update() {
-		if(peddel.getLevens() <1){
+		if(peddel.getLevens() <1 || peddel.getScore() == 75){
 			maakEindScherm(worldWidth,worldHeight);
 		}
 	}

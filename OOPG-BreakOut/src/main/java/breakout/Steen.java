@@ -61,8 +61,6 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		// TODO Auto-generated method stub
 		for(GameObject o : collidedGameObjects) {			
 			if(o instanceof Bal) {
-				peddel.setScore(peddel.getScore() + 1);
-				breakout.refreshDasboardText();
 				spawnRandomPowerUp((Bal)o);	
 				minLeven();
 			}
@@ -71,7 +69,7 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	
 	public void spawnRandomPowerUp(Bal bal) {
 		Random r = new Random();
-		int rGetal = r.nextInt(15);
+		int rGetal = 2;//r.nextInt(15);
 		
 		if(rGetal == 1) {
 			StickyBalPowerup stickyBal = new StickyBalPowerup(breakout, bal, getX(), getY());					
@@ -91,8 +89,10 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 	@Override
 	public void update() {
 		// TODO Auto-generated method stub
-		if(levens < 1) {			
+		if(levens < 1) {
 			breakout.deleteGameObject(this);
+			peddel.setScore(peddel.getScore() + 1);
+			breakout.refreshDasboardText();
 		}	
 	}
 
