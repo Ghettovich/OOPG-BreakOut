@@ -104,7 +104,8 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		for(GameObject o : collidedGameObjects) {
 			
 			if(o instanceof Steen) {						
-				peddel.setScore(peddel.getScore() + 1);
+				
+				
 				//if(goudenBal.)
 				if(getGoudenBal() == null) {
 					berekenBounceSteen(o.getAngleFrom(this));	

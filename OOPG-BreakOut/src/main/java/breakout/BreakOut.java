@@ -183,4 +183,7 @@ public class BreakOut extends GameEngine {
  		    setupGame();
 		}
 	}
+    public void refreshDasboardText() {
+        dashboardText.setText("Player: " + peddel.getNaam() + " | Score = " + peddel.getScore());
+    }
 }
