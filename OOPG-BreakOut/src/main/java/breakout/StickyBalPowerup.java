@@ -4,13 +4,10 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 public class StickyBalPowerup extends SpriteObject implements IPowerup {
-	
-	private int breedte, hoogte, aantalKeerVasthouden;
-	
-	Bal bal;
-	Peddel peddel;
-	BreakOut wereld;
-
+	private int aantalKeerVasthouden;
+	private Bal bal;
+	private Peddel peddel;
+	private BreakOut wereld;
 
 	public StickyBalPowerup(BreakOut wereld, Bal b, float x, float y) {
 		super(new Sprite("src/main/java/breakout/media/StickyBalPowerup.jpg"));
@@ -23,33 +20,18 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 		setHeight(50);
 		setWidth(50);
 	}
-	
-	public int getAantalKeerVasthouden() {
-		return aantalKeerVasthouden;
-	}	
 
-	public void setAantalKeerVasthouden(int aantalKeerVasthouden) {
-		this.aantalKeerVasthouden = aantalKeerVasthouden;
-	}
-		
-	public void setPeddel(Peddel peddel) {
-		this.peddel = peddel;
-	}
-	
 	public void usePowerUp() {
 		aantalKeerVasthouden--;
-		if(aantalKeerVasthouden < 1) {
-			peddel.setStickyBalActief(false);			
+		if (aantalKeerVasthouden < 1) {
+			peddel.setStickyBalActief(false);
 		}
 	}
-	
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		if(aantalKeerVasthouden < 1) {
+		if (aantalKeerVasthouden < 1) {
 			peddel.setStickyBalActief(false);
-			
 			wereld.deleteGameObject(this);
 		}
 	}
@@ -57,20 +39,24 @@ public class StickyBalPowerup extends SpriteObject implements IPowerup {
 	@Override
 	public void doePowerup() {
 	}
-	
 
 	@Override
 	public void doePowerup(Bal bal, Peddel peddel) {
-		// TODO Auto-generated method stub
 		aantalKeerVasthouden = 3;
 		this.bal = bal;
 		this.peddel = peddel;
-		peddel.setStickyBalActief(true);		
+		peddel.setStickyBalActief(true);
 		bal.setStickyBal(this);
 		peddel.setStickyBal(this);
 		System.out.println("sticky bal opgepakt door de peddel");
 		wereld.deleteGameObject(this);
 	}
 
+	public void setAantalKeerVasthouden(int aantalKeerVasthouden) {
+		this.aantalKeerVasthouden = aantalKeerVasthouden;
+	}
 
+	public void setPeddel(Peddel peddel) {
+		this.peddel = peddel;
+	}
 }

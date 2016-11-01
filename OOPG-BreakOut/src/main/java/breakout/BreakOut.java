@@ -4,12 +4,9 @@ import breakout.tile.MurenTile;
 import nl.han.ica.OOPDProcessingEngineHAN.Dashboard.Dashboard;
 import nl.han.ica.OOPDProcessingEngineHAN.Engine.GameEngine;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
-import nl.han.ica.OOPDProcessingEngineHAN.Persistence.FilePersistence;
-import nl.han.ica.OOPDProcessingEngineHAN.Persistence.IPersistence;
 import nl.han.ica.OOPDProcessingEngineHAN.Sound.Sound;
 import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileMap;
 import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
-import nl.han.ica.OOPDProcessingEngineHAN.View.EdgeFollowingViewport;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
 
@@ -25,7 +22,6 @@ public class BreakOut extends GameEngine {
 	private int huidigeScherm = 0;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		PApplet.main(new String[]{"breakout.BreakOut"});
 	}
 
@@ -34,8 +30,7 @@ public class BreakOut extends GameEngine {
      * noodzakelijke zaken geïnitialiseerd
      */
 	@Override
-	public void setupGame() {        
-        
+	public void setupGame() {
 		initializeTileMap();
 	    createObjects();
 	    createDashboard(worldWidth, 100);
@@ -77,17 +72,16 @@ public class BreakOut extends GameEngine {
     	tekenRodeStenen(peddel, 15, kleur, 40, 100);
     	
     	kleur = 0xFFD79B1C;
-    	//tekenStenen(peddel, 15, kleur, 40, 135);   	
+    	tekenStenen(peddel, 15, kleur, 40, 135);   	
     	
     	kleur = 0xFF4146E9;
-    	//tekenStenen(peddel, 15, kleur, 40, 170);   	
+    	tekenStenen(peddel, 15, kleur, 40, 170);   	
     	
     	kleur =  0xFFEDE84F;
-    	//tekenStenen(peddel, 15, kleur, 40, 205);
+    	tekenStenen(peddel, 15, kleur, 40, 205);
     	
     	kleur =  0xFFEDE84F;
-    	//tekenStenen(peddel, 15, kleur, 40, 240);
-    	
+    	tekenStenen(peddel, 15, kleur, 40, 240);
 	}
     
     private void tekenStenen(Peddel peddel, int aantal, int kleur, float startX, float startY) {
@@ -172,10 +166,11 @@ public class BreakOut extends GameEngine {
 
 	@Override
 	public void update() {
-		if(peddel.getLevens() <1 || peddel.getScore() == 75){
+		if(peddel.getLevens() <1 || peddel.getScore() >= 135){
 			maakEindScherm(worldWidth,worldHeight);
 		}
 	}
+	
 	public void mousePressed(){
 		if(huidigeScherm == 0){
 			huidigeScherm = 1;
@@ -184,6 +179,7 @@ public class BreakOut extends GameEngine {
  		    setupGame();
 		}
 	}
+	
     public void refreshDasboardText() {
         dashboardText.setText("Player: " + peddel.getNaam() + " | Score = " + peddel.getScore());
     }
