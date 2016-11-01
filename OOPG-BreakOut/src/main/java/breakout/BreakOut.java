@@ -55,6 +55,7 @@ public class BreakOut extends GameEngine {
      */ 
     private void createViewWithoutViewport(int screenWidth, int screenHeight) {
         View view = new View(screenWidth,screenHeight);
+        view.setBackground(loadImage("src/main/java/breakout/media/BackgroundBreakOutgoed.jpg"));
         setView(view);
         size(screenWidth, screenHeight);
     }
@@ -140,7 +141,7 @@ public class BreakOut extends GameEngine {
 	
     private void initializeTileMap() {
         /* TILES */
-        Sprite muurSprite = new Sprite("src/main/java/nl/han/ica/waterworld/media/boards.jpg");
+        Sprite muurSprite = new Sprite("src/main/java/breakout/media/muurBreakOut.jpg");
         TileType<MurenTile> muurTileType = new TileType<>(MurenTile.class, muurSprite);
         TileType[] tileTypes = { muurTileType };
         int tileSize=30;
