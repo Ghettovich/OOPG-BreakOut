@@ -1,7 +1,7 @@
 package breakout;
 /**
- * @author Bram Bergervoet
  * Interface voor de powerups
+ * @author Bram Bergervoet
  */
 public interface IPowerup {
 	

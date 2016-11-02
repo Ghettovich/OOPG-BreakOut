@@ -4,8 +4,8 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 /**
- * @author Bram Bergervoet
  * De powerup die zorgt dat de peddel groter wordt
+ * @author Bram Bergervoet
  */
 public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 	private BreakOut wereld;

@@ -11,8 +11,8 @@ import processing.core.PGraphics;
 import processing.core.PVector;
 
 /**
- * @author Bram Bergervoet, Geert Boeve
  * De peddel die de speler bestuurd
+ * @author Bram Bergervoet, Geert Boeve
  */
 public class Peddel extends GameObject implements ICollidableWithTiles, ICollidableWithGameObjects, IKeyInput {
 	private BreakOut wereld;

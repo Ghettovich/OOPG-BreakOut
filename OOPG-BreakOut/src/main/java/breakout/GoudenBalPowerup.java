@@ -4,8 +4,8 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 /**
- * @author Bram Bergervoet, Geert Boeve
  * Maakt een powerUp die valt en dan opgepakt kan worden door de peddel
+ * @author Bram Bergervoet, Geert Boeve
  */
 public class GoudenBalPowerup extends SpriteObject implements IPowerup {
 	private BreakOut wereld;

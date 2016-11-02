@@ -8,8 +8,8 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import processing.core.PGraphics;
 
 /**
- * @author Geert Boeve
  * Een steen die geraakt moet worden door de bal
+ * @author Geert Boeve
  */
 public class Steen extends GameObject implements ICollidableWithGameObjects {
 	protected int breedte, hoogte, kleur;

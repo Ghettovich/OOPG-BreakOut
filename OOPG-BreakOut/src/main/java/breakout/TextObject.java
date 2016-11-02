@@ -4,8 +4,8 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import processing.core.PGraphics;
 
 /**
- * @author Bram Bergervoet
  * Om een tekst af te beelden op het scherm
+ * @author Bram Bergervoet
  */
 public class TextObject extends GameObject {
 	private String text;

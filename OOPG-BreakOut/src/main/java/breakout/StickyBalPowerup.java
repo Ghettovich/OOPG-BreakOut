@@ -4,8 +4,8 @@ import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
 /**
- * @author Bram Bergervoet, Geert Boeve
  * De powerup die zorgt dat de bal aan de peddel blijft plakken tot de speler hem afschiet
+ * @author Bram Bergervoet, Geert Boeve
  */
 public class StickyBalPowerup extends SpriteObject implements IPowerup {
 	private int aantalKeerVasthouden;

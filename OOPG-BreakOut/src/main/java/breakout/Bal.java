@@ -11,8 +11,8 @@ import processing.core.PGraphics;
 import processing.core.PVector;
 
 /**
- * @author Geert Boeve
  * Maakt een bal, gebruikt GameObject voor de functies en implementeerd de collisions om te kijken of de bal een GameObject of een Tile raakt
+ * @author Geert Boeve
  */
 public class Bal extends GameObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 	protected int kleur;
