@@ -7,12 +7,24 @@ import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.GameObject;
 import processing.core.PGraphics;
 
+/**
+ * @author Geert Boeve
+ * Een steen die geraakt moet worden door de bal
+ */
 public class Steen extends GameObject implements ICollidableWithGameObjects {
 	protected int breedte, hoogte, kleur;
 	protected int levens;
 	private BreakOut breakout;
 	protected Peddel peddel;
 
+	/**
+	 * Constructor
+	 * @param peddel Referentie naar de peddel
+	 * @param breakout Referentie naar de wereld
+	 * @param kleur De kleur
+	 * @param x De x positie
+	 * @param y De y positie
+	 */
 	public Steen(Peddel peddel, BreakOut breakout, int kleur, float x, float y) {
 		this.breedte = 50;
 		this.hoogte = 30;
@@ -36,6 +48,10 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		}
 	}
 
+	/**
+	 * Geeft een random getal en als dat 1, 2 of 3 is komt er een powerup uit de geraakte steen
+	 * @param bal Referentie naar de bal
+	 */
 	public void spawnRandomPowerUp(Bal bal) {
 		Random r = new Random();
 		int rGetal = r.nextInt(30);
@@ -68,6 +84,9 @@ public class Steen extends GameObject implements ICollidableWithGameObjects {
 		g.rect(getX(), getY(), breedte, hoogte);
 	}
 
+	/**
+	 * Verlaagt het aantal levens van de steen met 1
+	 */
 	public void minLeven() {
 		levens--;
 	}

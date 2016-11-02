@@ -10,6 +10,10 @@ import nl.han.ica.OOPDProcessingEngineHAN.UserInput.IKeyInput;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
+/**
+ * @author Bram Bergervoet, Geert Boeve
+ * De peddel die de speler bestuurd
+ */
 public class Peddel extends GameObject implements ICollidableWithTiles, ICollidableWithGameObjects, IKeyInput {
 	private BreakOut wereld;
 	private Bal bal;
@@ -19,6 +23,13 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 	private int tijd;
 	private boolean stickyBalActief;
 
+	/**
+	 * Constructor
+	 * @param wereld Referentie naar de wereld
+	 * @param naam De naam van de peddel (speler)
+	 * @param hoogte De hoogte van de peddel
+	 * @param breedte De breedte van de peddel
+	 */
 	Peddel(BreakOut wereld, String naam, int hoogte, int breedte) {
 		this.wereld = wereld;
 		this.naam = naam;
@@ -97,9 +108,9 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 			setDirectionSpeed(90, speed);
 		}
 		if (keyCode == wereld.UP) {
-			System.out.println("up pressed");
+			//System.out.println("up pressed");
 			if ((bal.getxSpeed() == 0 && bal.getySpeed() == 0)) {
-				System.out.println("speed = 0 set speed");
+				//System.out.println("speed = 0 set speed");
 				bal.setY(bal.getY() - 5);
 				bal.setySpeed(-3);
 				bal.setxSpeed(-1);
@@ -110,6 +121,10 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		}
 	}
 
+	/**
+	 * Er wordt gekeken of de bal op de peddel is
+	 * @return true of false  
+	 */
 	public boolean balOpPeddel() {
 		// System.out.println("bal op peddel | bal y + dia = " + (bal.getY() + bal.getDiameter()) + " | peddel y = " + getY());
 		if (bal.getY() + bal.getHeight() >= getY()
@@ -120,51 +135,92 @@ public class Peddel extends GameObject implements ICollidableWithTiles, ICollida
 		}
 	}
 
-	/// getters en setters
+	/**
+	 * @return score De score van de peddel
+	 */
 	public int getScore() {
 		return score;
 	}
 
+	/**
+	 * Zet de score van de peddel
+	 * @param score De score van de peddel
+	 */
 	public void setScore(int score) {
 		this.score = score;
 	}
 
+	/**
+	 * @return levens De levens van de peddel
+	 */
 	public int getLevens() {
 		return levens;
 	}
 
+	/**
+	 * Zet de levens van de peddel
+	 * @param levens De levens van de peddel
+	 */
 	public void setLevens(int levens) {
 		this.levens = levens;
 	}
 
+	/**
+	 * @return naam De naam van de peddel
+	 */
 	public String getNaam() {
 		return naam;
 	}
 
+	/**
+	 * Verlaagt de levens van de speler met 1
+	 */
 	public void levenMinder() {
 		levens--;
 	}
 
+	/**
+	 * @return stickyBalActief Of de powerup stickyBal actief is
+	 */
 	public boolean getStickyBalActief() {
 		return stickyBalActief;
 	}
 
+	/**
+	 * Zet stickyBalActief op true of false
+	 * @param stickyBalActief Of de powerup stickyBal actief is
+	 */
 	public void setStickyBalActief(boolean stickyBalActief) {
 		this.stickyBalActief = stickyBalActief;
 	}
 
+	/**
+	 * Zet de bal van de peddel
+	 * @param bal Referentie naar de bal
+	 */
 	public void setBal(Bal bal) {
 		this.bal = bal;
 	}
 
+	/**
+	 * @return breedte De breedte van de peddel
+	 */
 	public int getBreedte() {
 		return breedte;
 	}
 
+	/**
+	 * Zet de breedte van de peddel
+	 * @param breedte De breedte van de peddel
+	 */
 	public void setBreedte(int breedte) {
 		this.breedte = breedte;
 	}
 
+	/**
+	 * Zet de stickyBal van de peddel
+	 * @param stickyBal De stickyBal van de peddel
+	 */
 	public void setStickyBal(StickyBalPowerup stickyBal) {
 		this.stickyBal = stickyBal;
 	}

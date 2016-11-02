@@ -2,9 +2,21 @@ package breakout;
 
 import nl.han.ica.OOPDProcessingEngineHAN.Collision.ICollidableWithGameObjects;
 
+/**
+ * @author Bram Bergervoet, Geert Boeve
+ * Een RodeSteen die geraakt moet worden door de bal. Deze heeft alleen twee levens
+ */
 public class RodeSteen extends Steen implements ICollidableWithGameObjects {
 	private BreakOut breakout;
 	
+	/**
+	 * Constructor
+	 * @param peddel Referentie naar de peddel
+	 * @param breakout Referentie naar de wereld
+	 * @param kleur De kleur
+	 * @param x De x positie
+	 * @param y De y positie
+	 */
 	public RodeSteen(Peddel peddel, BreakOut breakout, int kleur, float x, float y) {
 		super(peddel, breakout, kleur, x, y);
 		this.breakout = breakout;

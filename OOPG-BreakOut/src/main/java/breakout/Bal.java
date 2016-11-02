@@ -10,14 +10,23 @@ import nl.han.ica.OOPDProcessingEngineHAN.UserInput.IKeyInput;
 import processing.core.PGraphics;
 import processing.core.PVector;
 
-public class Bal extends GameObject implements ICollidableWithTiles, ICollidableWithGameObjects, IKeyInput {
+/**
+ * @author Geert Boeve
+ * Maakt een bal, gebruikt GameObject voor de functies en implementeerd de collisions om te kijken of de bal een GameObject of een Tile raakt
+ */
+public class Bal extends GameObject implements ICollidableWithTiles, ICollidableWithGameObjects {
 	protected int kleur;
 	private BreakOut breakout;
 	private int diameter;
 	private Peddel peddel;
 	private GoudenBalPowerup goudenBal;
 	private StickyBalPowerup stickyBal;
-
+	
+	/**
+	 * Constructor
+	 * @param breakout Referentie naar de wereld
+	 * @param peddel Referentie naar de peddel
+	 */
 	public Bal(BreakOut breakout, Peddel peddel) {
 		this.diameter = 30;
 		this.breakout = breakout;
@@ -28,7 +37,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		setWidth(diameter);
 		setHeight(diameter);
 	}
-
+	
 	@Override
 	public void update() {
 		if (this.getY() >= breakout.getHeight()) {
@@ -71,7 +80,7 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 		for (GameObject o : collidedGameObjects) {
 			if (o instanceof Steen) {
 				if (getGoudenBal() == null) {
-					berekenBounceSteen(o.getAngleFrom(this));
+					berekenBounceGameObject(o.getAngleFrom(this));
 				}
 			}
 			if (o instanceof Peddel) {
@@ -79,22 +88,22 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 					stickyBal.setPeddel(peddel);
 					//System.out.println("peddel geraakt, stickybal actief | aantalkeervast = "+ peddel.getStickyBallPowerup().getAantalKeerVasthouden());
 				} else {
-					berekenBounceSteen(o.getAngleFrom(this));
+					berekenBounceGameObject(o.getAngleFrom(this));
 				}
 			}
 		}
 	}
 
-	private void berekenBounceSteen(float objectAngle) {
+	private void berekenBounceGameObject(float objectAngle) {
 		if (objectAngle >= 0 && objectAngle < 45) {
 			setySpeed(-3);
-		} else if (objectAngle >= 45 && objectAngle < 135) {
+		} else if (objectAngle >= 45 && objectAngle <= 135) {
 			setxSpeed(3);
-		} else if (objectAngle >= 135 && objectAngle < 180) {
+		} else if (objectAngle >= 135 && objectAngle <= 180) {
 			setySpeed(3);
-		} else if (objectAngle >= 180 && objectAngle < 225) {
+		} else if (objectAngle >= 180 && objectAngle <= 225) {
 			setySpeed(3);
-		} else if (objectAngle >= 225 && objectAngle < 270) {
+		} else if (objectAngle >= 225 && objectAngle <= 270) {
 			setxSpeed(-3);
 		} else if (objectAngle >= 270 && objectAngle <= 360) {
 			setySpeed(-3);
@@ -110,19 +119,34 @@ public class Bal extends GameObject implements ICollidableWithTiles, ICollidable
 			setxSpeed(3);
 		}
 	}
-
+	
+	/**
+	 * Zet de kleur van een Bal
+	 * @param kleur Referentie naar de kleur van de bal
+	 */
 	public void setKleur(int kleur) {
 		this.kleur = kleur;
 	}
-
+	
+	/**
+	 * @return goudenBal Referentie naar de goudenBal
+	 */
 	public GoudenBalPowerup getGoudenBal() {
 		return goudenBal;
 	}
-
+	
+	/**
+	 * Zet de goudenBal van een Bal
+	 * @param goudenBal Referentie naar de goudenBal
+	 */
 	public void setGoudenBal(GoudenBalPowerup goudenBal) {
 		this.goudenBal = goudenBal;
 	}
 
+	/**
+	 * Zet de stickyBal van een Bal
+	 * @param stickyBal Referentie naar de stickyBal
+	 */
 	public void setStickyBal(StickyBalPowerup stickyBal) {
 		this.stickyBal = stickyBal;
 	}

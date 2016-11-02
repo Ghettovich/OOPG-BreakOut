@@ -3,11 +3,22 @@ package breakout;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
+/**
+ * @author Bram Bergervoet, Geert Boeve
+ * Maakt een powerUp die valt en dan opgepakt kan worden door de peddel
+ */
 public class GoudenBalPowerup extends SpriteObject implements IPowerup {
 	private BreakOut wereld;
 	private Bal bal;
 	private int tijd;
-
+	
+	/**
+	 * Constructor
+	 * @param wereld Referentie naar de wereld
+	 * @param bal Referentie naar de bal
+	 * @param x De x positie
+	 * @param y De y positie
+	 */
 	public GoudenBalPowerup(BreakOut wereld, Bal bal, float x, float y) {
 		super(new Sprite("src/main/java/breakout/media/GoudenBalPowerup.jpg"));
 		this.wereld = wereld;
@@ -32,14 +43,21 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup {
 	public void doePowerup(Bal bal, Peddel peddel) {
 	}
 
-	public void setTijd(int tijd) {
-		this.tijd = tijd;
-	}
-
 	@Override
 	public void update() {
 	}
 
+	/**
+	 * Zet de tijd van een GoudenBalPowerup
+	 * @param tijd De tijd
+	 */
+	public void setTijd(int tijd) {
+		this.tijd = tijd;
+	}
+	
+	/**
+	 * @retun tijd De tijd dat de powerup bezig is
+	 */
 	public int getTijd() {
 		return tijd;
 	}

@@ -3,10 +3,21 @@ package breakout;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.Sprite;
 import nl.han.ica.OOPDProcessingEngineHAN.Objects.SpriteObject;
 
+/**
+ * @author Bram Bergervoet
+ * De powerup die zorgt dat de peddel groter wordt
+ */
 public class VergrotePedelPowerup extends SpriteObject implements IPowerup {
 	private BreakOut wereld;
 	private Peddel peddel;
 
+	/**
+	 * Constructor
+	 * @param peddel Referentie naar de peddel
+	 * @param wereld Referentie naar de wereld
+	 * @param x De x positie
+	 * @param y De y positie
+	 */
 	public VergrotePedelPowerup(Peddel peddel, BreakOut wereld, float x, float y) {
 		super(new Sprite("src/main/java/breakout/media/VergrotePeddelPowerup.jpg"));
 		this.peddel = peddel;

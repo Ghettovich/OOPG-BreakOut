@@ -10,7 +10,9 @@ import nl.han.ica.OOPDProcessingEngineHAN.Tile.TileType;
 import nl.han.ica.OOPDProcessingEngineHAN.View.View;
 import processing.core.PApplet;
 
-
+/**
+ * @author Bram Bergervoet, Geert Boeve
+ */
 public class BreakOut extends GameEngine {
 	
 	private Sound backgroundSound;
@@ -27,7 +29,7 @@ public class BreakOut extends GameEngine {
 
     /**
      * In deze methode worden de voor het spel
-     * noodzakelijke zaken geïnitialiseerd
+     * noodzakelijke zaken ge�nitialiseerd.
      */
 	@Override
 	public void setupGame() {
@@ -43,11 +45,6 @@ public class BreakOut extends GameEngine {
         createViewWithoutViewport(worldWidth, worldHeight);
 	}
  
-    /**
-     * Creeërt de view zonder viewport
-     * @param screenWidth Breedte van het scherm
-     * @param screenHeight Hoogte van het scherm 
-     */ 
     private void createViewWithoutViewport(int screenWidth, int screenHeight) {
         View view = new View(screenWidth,screenHeight);
         view.setBackground(loadImage("src/main/java/breakout/media/BackgroundBreakOutgoed.jpg"));
@@ -180,6 +177,9 @@ public class BreakOut extends GameEngine {
 		}
 	}
 	
+	/**
+	 * vernieuwd de tekst die op een dashboard wordt weergegeven.
+	 */
     public void refreshDasboardText() {
         dashboardText.setText("Player: " + peddel.getNaam() + " | Score = " + peddel.getScore());
     }
