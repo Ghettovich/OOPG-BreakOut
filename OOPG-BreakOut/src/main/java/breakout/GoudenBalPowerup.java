@@ -56,7 +56,7 @@ public class GoudenBalPowerup extends SpriteObject implements IPowerup {
 	}
 	
 	/**
-	 * @retun tijd De tijd dat de powerup bezig is
+	 * @return tijd De tijd dat de powerup bezig is
 	 */
 	public int getTijd() {
 		return tijd;
